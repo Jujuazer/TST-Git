@@ -1,2 +1,2 @@
 ﻿  SpaceShooterSFML.cpp
-E:\COURS C++\Shooter\SpaceShooterSFML\SpaceShooterSFML\SpaceShooterSFML.cpp(2,10): fatal error C1083: Impossible d'ouvrir le fichier include : 'SFML/Graphics.hpp' : No such file or directory
+  SpaceShooterSFML.vcxproj -> C:\Users\asus\VS_C++\repos\TST-Git\x64\Debug\SpaceShooterSFML.exe

@@ -1,10 +1,12 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
+using namespace sf;
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "ChronoSpacer");
 	// Initialise everything below
+	CircleShape triangle(80, 3);
 	// Game loop
 	while (window.isOpen()) {
 		sf::Event event;
@@ -16,6 +18,7 @@ int main()
 		}
 
 		window.clear();
+		window.draw(triangle);
 		// Whatever I want to draw goes here
 		window.display();
 	}
