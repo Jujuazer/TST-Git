@@ -3,7 +3,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(800, 600), "ChronoSpacer");
+	sf::RenderWindow window(sf::VideoMode(1920, 1080), "ChronoSpacer");
 	// Initialise everything below
 	// Game loop
 	while (window.isOpen()) {
