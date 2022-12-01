@@ -1,0 +1,17 @@
+ShootEmUp style SuperHot :
+
+Through Space And Time
+
+Objectif de survivre le plus de temps possible
+Beaucoup de projectiles et ennemis
+Quand on bouge pas le temps ralentit
+deplacements octodirectionnels
+
+Division des ennemis quand on les laisse en vie trop longtemps
+Powers up classiques (tirs en cone, lasers perforants, missiles guidés) qui changent la couleur du vaisseau
+Munitions que lâchent les ennemis (scroll lentement pour forcer le joueur
+à les récupérer)
+Tourelles sur les cotés de l'écran (scroll également)
+
+Fond plutôt sombre, change de couleur avec le temps
+

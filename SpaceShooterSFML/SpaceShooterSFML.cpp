@@ -6,7 +6,12 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(1920, 1080), "ChronoSpacer");
 	// Initialise everything below
-	CircleShape triangle(80, 3);
+	ConvexShape convex;
+	convex.setPointCount(3);
+	convex.setPoint(0,Vector2f(0,0));
+	convex.setPoint(1,Vector2f(0,50));
+	convex.setPoint(2,Vector2f(50,50));
+	convex.setPosition(Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f });
 	// Game loop
 	while (window.isOpen()) {
 		sf::Event event;
@@ -18,7 +23,7 @@ int main()
 		}
 
 		window.clear();
-		window.draw(triangle);
+		window.draw(convex);
 		// Whatever I want to draw goes here
 		window.display();
 	}
