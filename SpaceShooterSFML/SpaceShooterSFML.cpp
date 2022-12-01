@@ -60,7 +60,12 @@ int main()
 		}
 
 		normalizeVector(direction);
+
 		move(spaceShip, direction, deltaTime);
+		PlayStageCollision(spaceShip, window);
+		
+		
+
 		
 		// Clear the window to black
 		window.clear();

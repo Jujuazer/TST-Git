@@ -42,6 +42,10 @@ void move(SpaceShip& spaceShip, Vector2f direction, float deltaTime) {
 	spaceShip.position.x += deltaX;
 	spaceShip.position.y += deltaY;
 
+	SetSpaceShipPosition(spaceShip, spaceShip.position);
+}
+
+void SetSpaceShipPosition(SpaceShip spaceShip, Vector2f position) {
 	spaceShip.spaceship1.setPosition(spaceShip.position);
 	spaceShip.spaceship2.setPosition(spaceShip.position);
 	spaceShip.spaceship3.setPosition(spaceShip.position);
@@ -86,4 +90,28 @@ void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
 	spaceShip.spaceship1.setRotation(angleDegs);
 	spaceShip.spaceship2.setRotation(angleDegs);
 	spaceShip.spaceship3.setRotation(angleDegs);
+}
+
+void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window) {
+	//460 - 1460
+
+	//left
+	if (spaceShip.position.x < 460) {
+		SetSpaceShipPosition(spaceShip, { 460,spaceShip.position.y });
+	}
+
+	//right
+	else if (spaceShip.position.x + spaceShip.spaceship1.getGlobalBounds().width > 1460) {
+		SetSpaceShipPosition(spaceShip, { 1460 - spaceShip.spaceship1.getGlobalBounds().width,spaceShip.position.y });
+	}
+
+	//top
+	else if (spaceShip.position.y < 0) {
+		SetSpaceShipPosition(spaceShip, { spaceShip.position.x, 0 });
+	}
+
+	//bottom
+	else if (spaceShip.position.y + spaceShip.spaceship1.getGlobalBounds().height > window.getSize().y) {
+		SetSpaceShipPosition(spaceShip, { spaceShip.position.x, window.getSize().y - spaceShip.spaceship1.getGlobalBounds().height });
+	}
 }
