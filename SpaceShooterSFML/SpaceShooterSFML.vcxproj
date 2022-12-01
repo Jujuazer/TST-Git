@@ -134,6 +134,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="SpaceShooterSFML.cpp" />
+    <ClCompile Include="speed.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="speed.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
