@@ -30,3 +30,12 @@
 *.exe
 *.out
 *.app
+.vs/SpaceShooterSFML/v17/Browse.VC.db-wal
+.vs/SpaceShooterSFML/FileContentIndex/2afd0c80-0f76-499a-a85e-e6ac8c0efdb3.vsidx
+.vs/SpaceShooterSFML/FileContentIndex/a06d98a3-3b7c-498b-b306-5918a51add20.vsidx
+.vs/SpaceShooterSFML/FileContentIndex/read.lock
+.vs/SpaceShooterSFML/v17/Browse.VC.db
+.vs/SpaceShooterSFML/v17/Browse.VC.db-shm
+.vs/SpaceShooterSFML/v17/Browse.VC.opendb
+.vs/SpaceShooterSFML/v17/ipch/AutoPCH/173d81ba8c3ecbf7/SPACESHOOTERSFML.ipch
+.vs/SpaceShooterSFML/v17/ipch/AutoPCH/63ad9cd8c608c976/SPEED.ipch
