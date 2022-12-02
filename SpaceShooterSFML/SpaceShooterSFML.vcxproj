@@ -133,11 +133,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="math.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="SpaceShooterSFML.cpp" />
     <ClCompile Include="speed.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="math.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="speed.h" />
   </ItemGroup>

@@ -104,5 +104,3 @@ sf::Vector2f GetProjectionOnLine(sf::Vector2f position, sf::Vector2f a, sf::Vect
     sf::Vector2f AB = b - a;
     return a + Normalize(AB) * Dot(Normalize(AP), Normalize(AB));
 }
-
-}
