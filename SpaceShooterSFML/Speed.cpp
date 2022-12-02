@@ -1,6 +1,6 @@
 #define _USE_MATH_DEFINES
 #include <iostream>
-#include "Speed.h"
+#include "speed.h"
 #include <SFML/Graphics.hpp>
 
 void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, Vector2f spaceShipSize) {
@@ -35,6 +35,15 @@ void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window)
 	window.draw(spaceShip.spaceship1);
 }
 
+void SetSpaceShipPosition(SpaceShip& spaceShip, Vector2f position) {
+	spaceShip.position.x = position.x;
+	spaceShip.position.y = position.y;
+
+	spaceShip.spaceship1.setPosition(spaceShip.position);
+	spaceShip.spaceship2.setPosition(spaceShip.position);
+	spaceShip.spaceship3.setPosition(spaceShip.position);
+}
+
 void move(SpaceShip& spaceShip, Vector2f direction, float deltaTime) {
 
 	float deltaX = spaceShip.speed * direction.x * deltaTime;
@@ -43,12 +52,6 @@ void move(SpaceShip& spaceShip, Vector2f direction, float deltaTime) {
 	spaceShip.position.y += deltaY;
 
 	SetSpaceShipPosition(spaceShip, spaceShip.position);
-}
-
-void SetSpaceShipPosition(SpaceShip spaceShip, Vector2f position) {
-	spaceShip.spaceship1.setPosition(spaceShip.position);
-	spaceShip.spaceship2.setPosition(spaceShip.position);
-	spaceShip.spaceship3.setPosition(spaceShip.position);
 }
 
 // put vector2 on lenght = 1
@@ -75,7 +78,7 @@ void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
 
 	angleRads = std::atan2(-direction.y, direction.x);
 	angleDegs = 90 - angleRads * 180.0 / M_PI;
-	std::cout << angleDegs << std::endl;
+	//std::cout << angleDegs << std::endl;
 
 	if (angleDegs > 45 && angleDegs < 315) {
 		angleDegs = 0;
@@ -92,15 +95,15 @@ void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
 	spaceShip.spaceship3.setRotation(angleDegs);
 }
 
-void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window) {
+void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& direction) {
 	//460 - 1460
 
 	//left
 	if (spaceShip.position.x < 460) {
-		SetSpaceShipPosition(spaceShip, { 460,spaceShip.position.y });
+		SetSpaceShipPosition(spaceShip, Vector2f { 460 ,spaceShip.position.y });
 	}
 
-	//right
+	//right  
 	else if (spaceShip.position.x + spaceShip.spaceship1.getGlobalBounds().width > 1460) {
 		SetSpaceShipPosition(spaceShip, { 1460 - spaceShip.spaceship1.getGlobalBounds().width,spaceShip.position.y });
 	}
@@ -110,7 +113,7 @@ void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window) {
 		SetSpaceShipPosition(spaceShip, { spaceShip.position.x, 0 });
 	}
 
-	//bottom
+	//bottom 
 	else if (spaceShip.position.y + spaceShip.spaceship1.getGlobalBounds().height > window.getSize().y) {
 		SetSpaceShipPosition(spaceShip, { spaceShip.position.x, window.getSize().y - spaceShip.spaceship1.getGlobalBounds().height });
 	}

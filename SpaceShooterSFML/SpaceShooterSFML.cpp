@@ -59,11 +59,11 @@ int main()
 
 		}
 
+		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);
-
 		move(spaceShip, direction, deltaTime);
-		PlayStageCollision(spaceShip, window);
-		
+
+		std::cout << spaceShip.position.x << std::endl;
 		
 
 		

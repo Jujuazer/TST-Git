@@ -27,7 +27,7 @@ void normalizeVector(Vector2f& vector);
 
 void rotateShip(SpaceShip& spaceShip, Vector2f direction);
 
-void SetSpaceShipPosition(SpaceShip spaceShip, Vector2f position);
+void SetSpaceShipPosition(SpaceShip& spaceShip, Vector2f position);
 
-void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window);
+void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& direction);
 
