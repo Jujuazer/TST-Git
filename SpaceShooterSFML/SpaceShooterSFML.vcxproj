@@ -133,10 +133,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Score.cpp" />
     <ClCompile Include="SpaceShooterSFML.cpp" />
     <ClCompile Include="speed.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Score.h" />
     <ClInclude Include="speed.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

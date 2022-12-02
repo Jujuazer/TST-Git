@@ -3,6 +3,7 @@
 using namespace sf;
 
 #include "speed.h";
+#include "Score.h";
 
 
 
@@ -15,6 +16,10 @@ int main()
 
 	SpaceShip spaceShip;
 	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, Vector2f{1,1});
+	
+	Score gameScore;
+	SetUpScore(gameScore, 0.1f); // time between each score increase
+	
 	Vector2f direction{ 0, 0 };
 	
 
@@ -62,8 +67,9 @@ int main()
 		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);
 		move(spaceShip, direction, deltaTime);
+		AddPerTime(gameScore, deltaTime, 1);
 
-		std::cout << spaceShip.position.x << std::endl;
+		//std::cout << spaceShip.position.x << std::endl;
 		
 
 		
@@ -72,6 +78,7 @@ int main()
 
 		// Whatever I want to draw goes here
 		updateDrawSpaceShip(spaceShip, window);
+		UpdateDrawScore(gameScore, window);
 		
 		//display the new window frame
 		window.display();
