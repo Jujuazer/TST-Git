@@ -4,8 +4,7 @@ using namespace sf;
 
 #include "speed.h";
 #include "Score.h";
-
-
+#include "math.h";
 
 int main()
 {
@@ -58,6 +57,10 @@ int main()
 				direction.y = 0;
 			}
 
+			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::Space)) {
+				Shoot(spaceShip, direction);
+			}
+
 			rotateShip(spaceShip, direction);
 
 			//std::cout << "x : " << direction.x << " y : " << direction.y << std::endl;
@@ -67,6 +70,7 @@ int main()
 		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);
 		move(spaceShip, direction, deltaTime);
+		MoveBullets(spaceShip, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
 
 		//std::cout << spaceShip.position.x << std::endl;
@@ -79,7 +83,7 @@ int main()
 		// Whatever I want to draw goes here
 		updateDrawSpaceShip(spaceShip, window);
 		UpdateDrawScore(gameScore, window);
-		
+		DrawBullets(spaceShip, window);
 		//display the new window frame
 		window.display();
 	}

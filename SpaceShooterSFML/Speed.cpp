@@ -36,8 +36,7 @@ void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window)
 }
 
 void SetSpaceShipPosition(SpaceShip& spaceShip, Vector2f position) {
-	spaceShip.position.x = position.x;
-	spaceShip.position.y = position.y;
+	spaceShip.position = position;
 
 	spaceShip.spaceship1.setPosition(spaceShip.position);
 	spaceShip.spaceship2.setPosition(spaceShip.position);
@@ -52,24 +51,6 @@ void move(SpaceShip& spaceShip, Vector2f direction, float deltaTime) {
 	spaceShip.position.y += deltaY;
 
 	SetSpaceShipPosition(spaceShip, spaceShip.position);
-}
-
-// put vector2 on lenght = 1
-void normalizeVector(Vector2f& vector) {
-
-	float xy = (vector.x * vector.x) + (vector.y * vector.y);
-	float lenght = 0;
-
-	if (xy > 0) {
-		lenght = sqrt(xy);
-		vector.x = round(vector.x / lenght);
-		vector.y = round(vector.y / lenght);
-	}
-
-	else {
-		vector.x = 0;
-		vector.y = 0;
-	}
 }
 
 void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
@@ -95,8 +76,56 @@ void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
 	spaceShip.spaceship3.setRotation(angleDegs);
 }
 
+void Shoot (SpaceShip& spaceShip, Vector2f direction) {
+	//spaceShip.Bullets.push_back(Bullet{ spaceShip.position, spaceShip.size, 400, direction });
+	if (direction.x == 0 && direction.y == 0) {
+		direction.y = -1;
+	}
+
+	Bullet x;
+
+	if ((direction.x == 1 || direction.x == -1) && direction.y == 0) { direction.x = 0; direction.y = -1; }
+	if (direction.y > 0) { direction.y = -1; direction.x = 0; }
+
+	x.direction = direction;
+
+	x.position = spaceShip.position;
+	x.speed = 800;
+	x.rotationAngle = spaceShip.rotationAngle;
+	
+	
+	x.bulletForm.setPointCount(3);
+	x.bulletForm.setPoint(0, Vector2f(0, -20));
+	x.bulletForm.setPoint(1, Vector2f(-20, 10));
+	x.bulletForm.setPoint(2, Vector2f(20, 10));
+	x.bulletForm.setFillColor(Color(200, 200, 200));
+	x.bulletForm.setPosition(x.position);
+	x.bulletForm.setRotation(x.rotationAngle);
+
+	spaceShip.Bullets.push_back(x);
+}
+
+void MoveBullets(SpaceShip& spaceShip, float deltaTime) {
+
+	for (std::list<Bullet>::iterator it = spaceShip.Bullets.begin(); it != spaceShip.Bullets.end(); it++) {
+		float deltaX = (*it).speed * (*it).direction.x * deltaTime;
+		float deltaY = (*it).speed * (*it).direction.y * deltaTime;
+		(*it).position.x += deltaX;
+		(*it).position.y += deltaY;
+
+		(*it).bulletForm.setPosition((*it).position);
+	}
+	//set position form
+}
+
+void DrawBullets(SpaceShip& spaceShip, RenderWindow& window) {
+	for (std::list<Bullet>::iterator it = spaceShip.Bullets.begin(); it != spaceShip.Bullets.end(); it++) {
+		window.draw((*it).bulletForm);
+	}
+}
+
 void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& direction) {
-	//460 - 1460
+	//460 - 1460 enlever et mettre en constante
 
 	//left
 	if (spaceShip.position.x < 460) {
