@@ -1,7 +1,5 @@
 ﻿  SpaceShooterSFML.cpp
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(5,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(6,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-  speed.cpp
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\speed.cpp(80,17): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
-  Génération de code en cours...
-  SpaceShooterSFML.vcxproj -> E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\x64\Debug\SpaceShooterSFML.exe
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(5,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(6,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(7,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+  SpaceShooterSFML.vcxproj -> C:\Users\asus\VS_C++\repos\TST-Git\x64\Debug\SpaceShooterSFML.exe

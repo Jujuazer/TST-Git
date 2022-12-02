@@ -12,15 +12,17 @@ void SetUpScore(Score& refScore, float time)
 		std::cout << "Error : couldn't load font" << std::endl;
 	}
 	refScore.scoreDisplay.setFont(refScore.scoreFont);
-	refScore.scoreDisplay.setCharacterSize(50);
+	refScore.scoreDisplay.setCharacterSize(30);
 	refScore.scoreDisplay.setString("0");
+	refScore.scoreDisplay.setPosition(100, 200);
+		//460 - 1460
 
 }
 
 void SetScore(Score& refScore, int scoreBonus)
 {
 	refScore.score += scoreBonus;
-	refScore.scoreDisplay.setString(std::to_string(refScore.score));
+	refScore.scoreDisplay.setString("Score " + std::to_string(refScore.score));
 
 }
 
