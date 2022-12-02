@@ -4,8 +4,7 @@ using namespace sf;
 
 #include "speed.h";
 #include "Score.h";
-
-
+#include "UI.h";
 
 int main()
 {
@@ -19,9 +18,15 @@ int main()
 	
 	Score gameScore;
 	SetUpScore(gameScore, 0.1f); // time between each score increase
-	
+
 	Vector2f direction{ 0, 0 };
-	
+
+	ConvexShape square;
+	SetShape(square, 0, 1080, 0, 460);
+	ConvexShape square2;
+	SetShape(square2, 0, 1080, 1460, 1920);
+
+
 
 	// Game loop
 	while (window.isOpen()) {
@@ -78,6 +83,8 @@ int main()
 
 		// Whatever I want to draw goes here
 		updateDrawSpaceShip(spaceShip, window);
+		window.draw(square);
+		window.draw(square2);
 		UpdateDrawScore(gameScore, window);
 		
 		//display the new window frame
