@@ -96,10 +96,6 @@ int main()
 		DrawBullets(game, window);
 		DrawGameOver(gameoverScreen, window, deltaTime);
 
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 		//display the new window frame
 		window.display();
 	}
