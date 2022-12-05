@@ -3,6 +3,11 @@ C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(5,10): 
 C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(6,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(7,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(8,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(9,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+>>>>>>> Stashed changes
 =======
 C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(8,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(9,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
