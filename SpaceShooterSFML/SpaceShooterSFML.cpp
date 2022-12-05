@@ -22,9 +22,12 @@ int main()
 	Vector2f direction{ 0, 0 };
 
 	ConvexShape square;
-	SetShape(square, 0, 1080, 0, 460);
+	SetShape(square, 0, 1080, 0, 460, Color(30, 30, 30, 255));
 	ConvexShape square2;
-	SetShape(square2, 0, 1080, 1460, 1920);
+	SetShape(square2, 0, 1080, 1460, 1920, Color(30, 30, 30, 255));
+
+	GameOver gameoverScreen;
+	gameoverScreen.endScore = &gameScore;
 
 
 
@@ -73,6 +76,7 @@ int main()
 		normalizeVector(direction);
 		move(spaceShip, direction, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
+		SetGameOver(gameoverScreen, window);
 
 		//std::cout << spaceShip.position.x << std::endl;
 		
@@ -86,7 +90,13 @@ int main()
 		window.draw(square);
 		window.draw(square2);
 		UpdateDrawScore(gameScore, window);
+<<<<<<< Updated upstream
 		
+=======
+		DrawBullets(game, window);
+		DrawGameOver(gameoverScreen, window, deltaTime);
+
+>>>>>>> Stashed changes
 		//display the new window frame
 		window.display();
 	}
