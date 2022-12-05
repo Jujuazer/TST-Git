@@ -1,6 +1,7 @@
 #define _USE_MATH_DEFINES
 #include <iostream>
 #include "speed.h"
+#include "game.h"
 #include <SFML/Graphics.hpp>
 
 void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, Vector2f spaceShipSize) {
@@ -76,7 +77,7 @@ void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
 	spaceShip.spaceship3.setRotation(angleDegs);
 }
 
-void Shoot (SpaceShip& spaceShip, Vector2f direction) {
+void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction) {
 	//spaceShip.Bullets.push_back(Bullet{ spaceShip.position, spaceShip.size, 400, direction });
 	if (direction.x == 0 && direction.y == 0) {
 		direction.y = -1;
@@ -92,8 +93,8 @@ void Shoot (SpaceShip& spaceShip, Vector2f direction) {
 	x.position = spaceShip.position;
 	x.speed = 800;
 	x.rotationAngle = spaceShip.rotationAngle;
-	
-	
+
+
 	x.bulletForm.setPointCount(3);
 	x.bulletForm.setPoint(0, Vector2f(0, -20));
 	x.bulletForm.setPoint(1, Vector2f(-20, 10));
@@ -102,26 +103,7 @@ void Shoot (SpaceShip& spaceShip, Vector2f direction) {
 	x.bulletForm.setPosition(x.position);
 	x.bulletForm.setRotation(x.rotationAngle);
 
-	spaceShip.Bullets.push_back(x);
-}
-
-void MoveBullets(SpaceShip& spaceShip, float deltaTime) {
-
-	for (std::list<Bullet>::iterator it = spaceShip.Bullets.begin(); it != spaceShip.Bullets.end(); it++) {
-		float deltaX = (*it).speed * (*it).direction.x * deltaTime;
-		float deltaY = (*it).speed * (*it).direction.y * deltaTime;
-		(*it).position.x += deltaX;
-		(*it).position.y += deltaY;
-
-		(*it).bulletForm.setPosition((*it).position);
-	}
-	//set position form
-}
-
-void DrawBullets(SpaceShip& spaceShip, RenderWindow& window) {
-	for (std::list<Bullet>::iterator it = spaceShip.Bullets.begin(); it != spaceShip.Bullets.end(); it++) {
-		window.draw((*it).bulletForm);
-	}
+	game.Bullets.push_back(x);
 }
 
 void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& direction) {

@@ -6,6 +6,7 @@ using namespace sf;
 #include "Score.h";
 #include "UI.h";
 #include "math.h";
+#include "game.h";
 
 int main()
 {
@@ -13,6 +14,8 @@ int main()
 	// Initialise everything below
 
 	Clock mainClock;
+
+	Game game;
 
 	SpaceShip spaceShip;
 	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, Vector2f{1,1});
@@ -65,7 +68,7 @@ int main()
 			}
 
 			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::Space)) {
-				Shoot(spaceShip, direction);
+				Shoot(spaceShip, game, direction);
 			}
 
 			rotateShip(spaceShip, direction);
@@ -77,7 +80,7 @@ int main()
 		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);
 		move(spaceShip, direction, deltaTime);
-		MoveBullets(spaceShip, deltaTime);
+		MoveBullets(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
 
 		//std::cout << spaceShip.position.x << std::endl;
@@ -92,7 +95,7 @@ int main()
 		window.draw(square);
 		window.draw(square2);
 		UpdateDrawScore(gameScore, window);
-		DrawBullets(spaceShip, window);
+		DrawBullets(game, window);
 		//display the new window frame
 		window.display();
 	}

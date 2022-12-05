@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "math.h"
 
+const float PI = 3.14159265358979323846f;
+
 void normalizeVector(Vector2f& vector) {
 
 	float xy = (vector.x * vector.x) + (vector.y * vector.y);
@@ -20,7 +22,7 @@ void normalizeVector(Vector2f& vector) {
 	}
 }
 
-const float PI = 3.14159265358979323846f;
+
 
 bool IsOverlappingCircleOnCircle(sf::Vector2f aPosition, float aRadius, sf::Vector2f bPosition, float bRadius)
 {
