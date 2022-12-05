@@ -30,6 +30,7 @@ int main()
 	ConvexShape square2;
 	SetShape(square2, 0, 1080, 1460, 1920);
 
+	window.setKeyRepeatEnabled(false);
 
 
 	// Game loop
@@ -37,34 +38,25 @@ int main()
 		Event event;
 		Time time = mainClock.restart();
 		float deltaTime = time.asSeconds();
+		game.originalDeltaTime = deltaTime;
 
+		HandleKeyInput(direction);
+
+		//if no keys are pressed (moving keys) it slowdow
+		if (!Keyboard::isKeyPressed(Keyboard::Key::D) && !Keyboard::isKeyPressed(Keyboard::Key::S) && !Keyboard::isKeyPressed(Keyboard::Key::Z) && !Keyboard::isKeyPressed(Keyboard::Key::Q)) {
+			spaceShip.isMoving = false;
+		}
+		else if (Keyboard::isKeyPressed) {
+			spaceShip.isMoving = true;
+		}
+
+
+		// one single input
 		while (window.pollEvent(event)) {
 
 			// Process any input event here
-			if (event.type == sf::Event::Closed) {
+			if (event.type == Event::Closed) {
 				window.close();
-			}
-
-			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Key::Z) {
-				direction.y = -1;
-			}
-			else if (event.type == Event::KeyPressed && event.key.code == Keyboard::Key::S) {
-				direction.y = 1;
-			}
-
-			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Key::Q) {
-				direction.x = -1;
-			}
-			else if (event.type == Event::KeyPressed && event.key.code == Keyboard::Key::D) {
-				direction.x = 1;
-			}
-
-			if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Key::D || event.key.code == Keyboard::Key::Q)) {
-				direction.x = 0;
-			}
-
-			if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Key::Z || event.key.code == Keyboard::Key::S)) {
-				direction.y = 0;
 			}
 
 			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::Space)) {
@@ -74,7 +66,13 @@ int main()
 			rotateShip(spaceShip, direction);
 
 			//std::cout << "x : " << direction.x << " y : " << direction.y << std::endl;
+		}
 
+
+		//std::cout << "is moving : " << spaceShip.isMoving << " deltaTime : " << deltaTime << std::endl;
+		//SlowDown mechanic while not moving
+		if (!spaceShip.isMoving) {
+			SlowDown(game, deltaTime, 4);
 		}
 
 		PlayStageCollision(spaceShip, window, direction);

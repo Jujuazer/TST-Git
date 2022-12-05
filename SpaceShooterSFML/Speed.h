@@ -18,6 +18,8 @@ struct SpaceShip
     float speed = 400;
 
     float rotationAngle = 0;
+
+    bool isMoving;
 };
 
 void setupSpaceShip(SpaceShip& spaceShip, Vector2f spaceShipPosition, Vector2f spaceShipSize);

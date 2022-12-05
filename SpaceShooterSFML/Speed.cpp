@@ -1,8 +1,10 @@
 #define _USE_MATH_DEFINES
 #include <iostream>
 #include "speed.h"
-#include "game.h"
 #include <SFML/Graphics.hpp>
+
+const int leftBound = 460;
+const int rightBound = 1460;
 
 void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, Vector2f spaceShipSize) {
 
@@ -107,16 +109,15 @@ void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction) {
 }
 
 void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& direction) {
-	//460 - 1460 enlever et mettre en constante
 
 	//left
-	if (spaceShip.position.x < 460) {
-		SetSpaceShipPosition(spaceShip, Vector2f { 460 ,spaceShip.position.y });
+	if (spaceShip.position.x < leftBound + spaceShip.spaceship1.getGlobalBounds().width) {
+		SetSpaceShipPosition(spaceShip, Vector2f { leftBound + spaceShip.spaceship1.getGlobalBounds().width ,spaceShip.position.y });
 	}
 
 	//right  
-	else if (spaceShip.position.x + spaceShip.spaceship1.getGlobalBounds().width > 1460) {
-		SetSpaceShipPosition(spaceShip, { 1460 - spaceShip.spaceship1.getGlobalBounds().width,spaceShip.position.y });
+	else if (spaceShip.position.x + spaceShip.spaceship1.getGlobalBounds().width > rightBound) {
+		SetSpaceShipPosition(spaceShip, { rightBound - spaceShip.spaceship1.getGlobalBounds().width,spaceShip.position.y });
 	}
 
 	//top
