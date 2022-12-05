@@ -1,3 +1,8 @@
-﻿  speed.cpp
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\speed.cpp(64,17): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
+﻿  SpaceShooterSFML.cpp
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(5,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(6,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(7,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(8,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(9,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(49,22): warning C4551: liste d'arguments manquante dans l'appel de fonction
   SpaceShooterSFML.vcxproj -> E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\x64\Debug\SpaceShooterSFML.exe
