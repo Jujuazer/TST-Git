@@ -5,6 +5,8 @@ using namespace sf;
 #include "speed.h";
 #include "Score.h";
 #include "UI.h";
+#include "math.h";
+#include "game.h";
 
 int main()
 {
@@ -12,6 +14,8 @@ int main()
 	// Initialise everything below
 
 	Clock mainClock;
+
+	Game game;
 
 	SpaceShip spaceShip;
 	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, Vector2f{1,1});
@@ -22,12 +26,9 @@ int main()
 	Vector2f direction{ 0, 0 };
 
 	ConvexShape square;
-	SetShape(square, 0, 1080, 0, 460, Color(30, 30, 30, 255));
+	SetShape(square, 0, 1080, 0, 460);
 	ConvexShape square2;
-	SetShape(square2, 0, 1080, 1460, 1920, Color(30, 30, 30, 255));
-
-	GameOver gameoverScreen;
-	gameoverScreen.endScore = &gameScore;
+	SetShape(square2, 0, 1080, 1460, 1920);
 
 
 
@@ -66,6 +67,10 @@ int main()
 				direction.y = 0;
 			}
 
+			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::Space)) {
+				Shoot(spaceShip, game, direction);
+			}
+
 			rotateShip(spaceShip, direction);
 
 			//std::cout << "x : " << direction.x << " y : " << direction.y << std::endl;
@@ -75,8 +80,8 @@ int main()
 		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);
 		move(spaceShip, direction, deltaTime);
+		MoveBullets(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
-		SetGameOver(gameoverScreen, window);
 
 		//std::cout << spaceShip.position.x << std::endl;
 		
@@ -90,12 +95,7 @@ int main()
 		window.draw(square);
 		window.draw(square2);
 		UpdateDrawScore(gameScore, window);
-<<<<<<< Updated upstream
-		
-=======
 		DrawBullets(game, window);
-		DrawGameOver(gameoverScreen, window, deltaTime);
-
 		//display the new window frame
 		window.display();
 	}

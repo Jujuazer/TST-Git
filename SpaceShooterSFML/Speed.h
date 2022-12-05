@@ -1,5 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <list>
+#include "bullet.h"
+#include "game.h"
 using namespace sf;
 
 struct SpaceShip
@@ -23,11 +26,11 @@ void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window);
 
 void move(SpaceShip& spaceShip, Vector2f direction, float deltaTime);
 
-void normalizeVector(Vector2f& vector);
-
 void rotateShip(SpaceShip& spaceShip, Vector2f direction);
 
 void SetSpaceShipPosition(SpaceShip& spaceShip, Vector2f position);
 
 void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& direction);
+
+void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction);
 

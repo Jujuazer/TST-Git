@@ -27,6 +27,15 @@
     <ClCompile Include="UI.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="math.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="game.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="bullet.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="speed.h">
@@ -38,8 +47,6 @@
     <ClInclude Include="UI.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
-=======
     <ClInclude Include="math.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -49,12 +56,5 @@
     <ClInclude Include="bullet.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
   </ItemGroup>
 </Project>

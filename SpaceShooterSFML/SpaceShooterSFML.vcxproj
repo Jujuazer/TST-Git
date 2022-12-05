@@ -133,19 +133,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="game.cpp" />
+    <ClCompile Include="math.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="SpaceShooterSFML.cpp" />
     <ClCompile Include="speed.cpp" />
     <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< Updated upstream
-=======
     <ClInclude Include="bullet.h" />
-    <ClInclude Include="Enemy.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="math.h" />
->>>>>>> Stashed changes
     <ClInclude Include="Score.h" />
     <ClInclude Include="speed.h" />
     <ClInclude Include="UI.h" />
