@@ -22,8 +22,6 @@ void normalizeVector(Vector2f& vector) {
 	}
 }
 
-
-
 bool IsOverlappingCircleOnCircle(sf::Vector2f aPosition, float aRadius, sf::Vector2f bPosition, float bRadius)
 {
     sf::Vector2f aToB = bPosition - aPosition;
@@ -60,6 +58,16 @@ sf::Vector2f ConvertAngleToDirection(float degree, bool flipX, bool flipY)
 sf::Vector2f ConvertRadianToDirection(float radian, bool flipX, bool flipY)
 {
     return sf::Vector2f(cos(radian) * (flipX ? -1.f : 1.f), sin(radian) * (flipY ? -1.f : 1.f));
+}
+
+float ConvertVectorToRadian(sf::Vector2f vector, bool flipX, bool flipY)
+{
+    return atan2f(vector.y * (flipY ? -1.f : 1.f), vector.x * (flipX ? -1.f : 1.f));
+}
+
+float ConvertVectorToDegree(sf::Vector2f vector, bool flipX, bool flipY)
+{
+    return RadianToDegree(ConvertVectorToRadian(vector, flipX, flipY));
 }
 
 float DegreeToRadian(float degree)
@@ -105,4 +113,14 @@ sf::Vector2f GetProjectionOnLine(sf::Vector2f position, sf::Vector2f a, sf::Vect
     sf::Vector2f AP = position - a;
     sf::Vector2f AB = b - a;
     return a + Normalize(AB) * Dot(Normalize(AP), Normalize(AB));
+}
+
+float Lerp(float a, float b, float t)
+{
+    return a + (b - a) * t;
+}
+
+sf::Vector2f Lerp(sf::Vector2f a, sf::Vector2f b, float t)
+{
+    return a + (b - a) * t;
 }

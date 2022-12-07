@@ -8,6 +8,7 @@ using namespace sf;
 #include "math.h";
 #include "game.h";
 #include "Enemy.h"
+#include "ParticleSystem.h"
 
 int main()
 {
@@ -18,9 +19,11 @@ int main()
 
 	Game game;
 
-	SpaceShip spaceShip;
-	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, Vector2f{ 1,1 });
+	ParticleSystem particleSystem = CreateParticleSystem(0.2f, 2, 3, {0,0}, 4, 2);
 
+	SpaceShip spaceShip;                                                                     //space ship size // shoot delay
+	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, 0.7f        , 0.1f);
+	
 	Score gameScore;
 	SetUpScore(gameScore, 0.1f); // time between each score increase
 
@@ -34,6 +37,7 @@ int main()
 	GameOver gameoverScreen;
 	gameoverScreen.score = &gameScore;
 	SetGameOver(gameoverScreen, window);
+	window.setKeyRepeatEnabled(false);
 
 	GAMESTATE gameState = GAMESTATE::PLAYING;
 
@@ -44,43 +48,36 @@ int main()
 
 
 		float deltaTime = time.asSeconds();
+		game.originalDeltaTime = deltaTime;
 
 
 
 		RetryButtonF(gameoverScreen, window);
 
 
+		HandleKeyInput(direction);
+
+		//if no keys are pressed (moving keys) it slowdow
+		if (!Keyboard::isKeyPressed(Keyboard::Key::D) && !Keyboard::isKeyPressed(Keyboard::Key::S) && !Keyboard::isKeyPressed(Keyboard::Key::Z) && !Keyboard::isKeyPressed(Keyboard::Key::Q)) {
+			spaceShip.isMoving = false;
+		}
+		else if (Keyboard::isKeyPressed) {
+			spaceShip.isMoving = true;
+		}
+
+
+		// one single input
 		while (window.pollEvent(event)) {
 
 			// Process any input event here
-			if (event.type == sf::Event::Closed) {
+			if (event.type == Event::Closed) {
 				window.close();
 			}
 
-			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Key::Z) {
-				direction.y = -1;
-			}
-			else if (event.type == Event::KeyPressed && event.key.code == Keyboard::Key::S) {
-				direction.y = 1;
-			} 
-
-			if (event.type == Event::KeyPressed && event.key.code == Keyboard::Key::Q) {
-				direction.x = -1;
-			}
-			else if (event.type == Event::KeyPressed && event.key.code == Keyboard::Key::D) {
-				direction.x = 1;
-			}
-
-			if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Key::D || event.key.code == Keyboard::Key::Q)) {
-				direction.x = 0;
-			}
-
-			if (event.type == Event::KeyReleased && (event.key.code == Keyboard::Key::Z || event.key.code == Keyboard::Key::S)) {
-				direction.y = 0;
-			}
-
-			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::Space)) {
+			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::Space) && spaceShip.shootOpen) {
 				Shoot(spaceShip, game, direction);
+				spaceShip.shootOpen = false;
+				spaceShip.shootCounter = 0;
 			}
 
 			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::M)) {
@@ -90,7 +87,20 @@ int main()
 			rotateShip(spaceShip, direction);
 
 			//std::cout << "x : " << direction.x << " y : " << direction.y << std::endl;
+		}
 
+		//std::cout << "is moving : " << spaceShip.isMoving << " deltaTime : " << deltaTime << std::endl;
+		//SlowDown mechanic while not moving
+		if (!spaceShip.isMoving) {
+			SlowDown(game, deltaTime, 10);
+		}
+
+		if (!spaceShip.shootOpen) {
+
+			if (spaceShip.shootCounter > spaceShip.shootDelay) {
+				spaceShip.shootOpen = true;
+			}
+			spaceShip.shootCounter += deltaTime;
 		}
 
 		generateEnemy(gameScore, game, window, direction);
@@ -102,6 +112,7 @@ int main()
 		MoveBullets(game, deltaTime);
 		updateEnemy(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
+		UpdateParticleSystem(particleSystem, deltaTime);
 
 		//std::cout << spaceShip.position.x << std::endl;
 
@@ -129,6 +140,8 @@ int main()
 		{
 		DrawGameOver(gameoverScreen, window, deltaTime);
 		}
+		DrawParticleSystem(particleSystem, window);
+		
 		//display the new window frame
 		window.display();
 	}

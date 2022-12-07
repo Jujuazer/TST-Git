@@ -1,32 +1,38 @@
 #define _USE_MATH_DEFINES
 #include <iostream>
 #include "speed.h"
-#include "game.h"
+#include "math.h"
 #include <SFML/Graphics.hpp>
 
-void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, Vector2f spaceShipSize) {
+const int leftBound = 460;
+const int rightBound = 1460;
+const float biShotAngle = 10;
+
+void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, float spaceShipSize, float shootDelay) {
 
 	spaceShip.position = spaceShipPosition;
 	spaceShip.size = spaceShipSize;
 	spaceShip.spaceship1.setPointCount(3);
-	spaceShip.spaceship1.setPoint(0, Vector2f(0, -75));
-	spaceShip.spaceship1.setPoint(1, Vector2f(-25, 25));
-	spaceShip.spaceship1.setPoint(2, Vector2f(25, 25));
+	spaceShip.spaceship1.setPoint(0, Vector2f(0, -75 * spaceShipSize));
+	spaceShip.spaceship1.setPoint(1, Vector2f(-25 * spaceShipSize, 25 * spaceShipSize));
+	spaceShip.spaceship1.setPoint(2, Vector2f(25 * spaceShipSize, 25 * spaceShipSize));
 	spaceShip.spaceship1.setPosition(spaceShipPosition);
 
 	spaceShip.spaceship2.setPointCount(3);
-	spaceShip.spaceship2.setPoint(0, Vector2f(0, -20));
-	spaceShip.spaceship2.setPoint(1, Vector2f(-60, 10));
-	spaceShip.spaceship2.setPoint(2, Vector2f(60, 10));
+	spaceShip.spaceship2.setPoint(0, Vector2f(0, -20 * spaceShipSize));
+	spaceShip.spaceship2.setPoint(1, Vector2f(-60 * spaceShipSize, 10 * spaceShipSize));
+	spaceShip.spaceship2.setPoint(2, Vector2f(60 * spaceShipSize, 10 * spaceShipSize));
 	spaceShip.spaceship2.setFillColor(Color(200, 200, 200));
 	spaceShip.spaceship2.setPosition(spaceShipPosition);
 
 	spaceShip.spaceship3.setPointCount(3);
-	spaceShip.spaceship3.setPoint(0, Vector2f(0, 20));
-	spaceShip.spaceship3.setPoint(1, Vector2f(-50, -5));
-	spaceShip.spaceship3.setPoint(2, Vector2f(50, -5));
+	spaceShip.spaceship3.setPoint(0, Vector2f(0 * spaceShipSize, 20 * spaceShipSize));
+	spaceShip.spaceship3.setPoint(1, Vector2f(-50 * spaceShipSize, -5 * spaceShipSize));
+	spaceShip.spaceship3.setPoint(2, Vector2f(50 * spaceShipSize, -5 * spaceShipSize));
 	spaceShip.spaceship3.setFillColor(Color(150, 150, 150));
 	spaceShip.spaceship3.setPosition(spaceShipPosition);
+
+	spaceShip.shootDelay = shootDelay;
 }
 
 void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window)
@@ -78,6 +84,7 @@ void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
 }
 
 void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction) {
+
 	//spaceShip.Bullets.push_back(Bullet{ spaceShip.position, spaceShip.size, 400, direction });
 	if (direction.x == 0 && direction.y == 0) {
 		direction.y = -1;
@@ -88,11 +95,43 @@ void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction) {
 	if ((direction.x == 1 || direction.x == -1) && direction.y == 0) { direction.x = 0; direction.y = -1; }
 	if (direction.y > 0) { direction.y = -1; direction.x = 0; }
 
-	x.direction = direction;
+	if (spaceShip.shootmode == 0) {
+
+		x.direction = direction;
+		x.rotationAngle = spaceShip.rotationAngle;
+	}
 
 	x.position = spaceShip.position;
 	x.speed = 800;
-	x.rotationAngle = spaceShip.rotationAngle;
+
+	if (spaceShip.shootmode == 1) {
+		Bullet y;
+
+		x.direction = ConvertAngleToDirection(ConvertVectorToDegree(direction) + biShotAngle);
+		y.direction = ConvertAngleToDirection(ConvertVectorToDegree(direction) - biShotAngle);
+
+		x.rotationAngle = ConvertVectorToDegree(x.direction);
+		y.rotationAngle = ConvertVectorToDegree(y.direction, true, false);
+
+		y.position = spaceShip.position;
+		y.speed = 800;
+
+		y.bulletForm.setPointCount(3);
+		y.bulletForm.setPoint(0, Vector2f(0, -20));
+		y.bulletForm.setPoint(1, Vector2f(-20, 10));
+		y.bulletForm.setPoint(2, Vector2f(20, 10));
+		y.bulletForm.setFillColor(Color(200, 200, 200));
+		y.bulletForm.setPosition(y.position);
+		y.bulletForm.setRotation(y.rotationAngle);
+
+		game.Bullets.push_back(y);
+	}
+
+	if (spaceShip.shootmode == 2) {
+
+	}
+
+
 
 
 	x.bulletForm.setPointCount(3);
@@ -107,16 +146,15 @@ void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction) {
 }
 
 void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& direction) {
-	//460 - 1460 enlever et mettre en constante
 
 	//left
-	if (spaceShip.position.x < 460) {
-		SetSpaceShipPosition(spaceShip, Vector2f { 460 ,spaceShip.position.y });
+	if (spaceShip.position.x < leftBound + spaceShip.spaceship1.getGlobalBounds().width) {
+		SetSpaceShipPosition(spaceShip, Vector2f { leftBound + spaceShip.spaceship1.getGlobalBounds().width ,spaceShip.position.y });
 	}
 
 	//right  
-	else if (spaceShip.position.x + spaceShip.spaceship1.getGlobalBounds().width > 1460) {
-		SetSpaceShipPosition(spaceShip, { 1460 - spaceShip.spaceship1.getGlobalBounds().width,spaceShip.position.y });
+	else if (spaceShip.position.x + spaceShip.spaceship1.getGlobalBounds().width > rightBound) {
+		SetSpaceShipPosition(spaceShip, { rightBound - spaceShip.spaceship1.getGlobalBounds().width,spaceShip.position.y });
 	}
 
 	//top

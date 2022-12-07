@@ -91,3 +91,33 @@ void ChangeEnemySpeed(Game& game, float deltaTime) {
 	}
 }
 	
+void SlowDown(Game& game, float& deltaTime, float divideValue) {
+	deltaTime = game.originalDeltaTime/ divideValue;
+}
+
+void ResetDeltaTime(Game& game, float& deltaTime) {
+	deltaTime = game.originalDeltaTime;
+}
+
+void HandleKeyInput(Vector2f& direction) {
+	//multiple inputs
+	if (Keyboard::isKeyPressed(Keyboard::Key::Z)) {
+		direction.y = -1;
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
+		direction.y = 1;
+	}
+	else {
+		direction.y = 0;
+	}
+
+	if (Keyboard::isKeyPressed(Keyboard::Key::Q)) {
+		direction.x = -1;
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
+		direction.x = 1;
+	}
+	else {
+		direction.x = 0;
+	}
+}
