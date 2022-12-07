@@ -19,7 +19,7 @@ int main()
 
 	Game game;
 
-	ParticleSystem particleSystem = CreateParticleSystem(0.2f, 2, 3, {0,0}, 4, 2);
+	//ParticleSystem particleSystem = CreateParticleSystem(0.2f, 2, 3, {0,0}, 4, 2);
 
 	SpaceShip spaceShip;                                                                     //space ship size // shoot delay
 	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, 0.7f        , 0.1f);
@@ -112,7 +112,7 @@ int main()
 		MoveBullets(game, deltaTime);
 		updateEnemy(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
-		UpdateParticleSystem(particleSystem, deltaTime);
+		//UpdateParticleSystem(particleSystem, deltaTime);
 
 		//std::cout << spaceShip.position.x << std::endl;
 
@@ -140,7 +140,7 @@ int main()
 		{
 		DrawGameOver(gameoverScreen, window, deltaTime);
 		}
-		DrawParticleSystem(particleSystem, window);
+		//DrawParticleSystem(particleSystem, window);
 		
 		//display the new window frame
 		window.display();
