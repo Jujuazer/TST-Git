@@ -6,6 +6,10 @@
 using namespace sf;
 
 struct Enemy;
+enum GAMESTATE {
+	PLAYING = 0,
+	GAMEOVER = 1,
+};
 
 struct Game
 {
@@ -25,6 +29,5 @@ void moveEnemy(Game& game, float deltaTime);
 void generateEnemy(Score& Gscore, Game& game, RenderWindow& window, Vector2f direction);
 
 void ChangeEnemySpeed(Game& game, float deltaTime);
-
 
 

@@ -13,7 +13,7 @@ void SetUpScore(Score& refScore, float time)
 	}
 	refScore.scoreDisplay.setFont(refScore.scoreFont);
 	refScore.scoreDisplay.setCharacterSize(30);
-	refScore.scoreDisplay.setString("0");
+	refScore.scoreDisplay.setString("Score 0");
 	refScore.scoreDisplay.setPosition(100, 200);
 		//460 - 1460
 
