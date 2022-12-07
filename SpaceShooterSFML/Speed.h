@@ -5,6 +5,13 @@
 #include "game.h"
 using namespace sf;
 
+enum shootMode {
+    SINGLE,
+    BISHOT,
+    LASER,
+    TARGETMISSILE
+};
+
 struct SpaceShip
 {
     // put everything about the space ship specs
@@ -14,15 +21,20 @@ struct SpaceShip
     ConvexShape spaceship3;
 
     Vector2f position;
-    Vector2f size;
+    float size;
     float speed = 400;
 
     float rotationAngle = 0;
+    float shootDelay;
+    float shootCounter;
 
-    bool isMoving;
+    bool shootOpen = true;
+    bool isMoving = false;
+
+    shootMode shootmode = BISHOT;
 };
 
-void setupSpaceShip(SpaceShip& spaceShip, Vector2f spaceShipPosition, Vector2f spaceShipSize);
+void setupSpaceShip(SpaceShip& spaceShip, Vector2f spaceShipPosition, float spaceShipSize, float shootDelay);
 
 void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window);
 

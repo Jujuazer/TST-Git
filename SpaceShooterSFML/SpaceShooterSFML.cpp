@@ -7,6 +7,7 @@ using namespace sf;
 #include "UI.h";
 #include "math.h";
 #include "game.h";
+#include "ParticleSystem.h"
 
 int main()
 {
@@ -17,8 +18,10 @@ int main()
 
 	Game game;
 
-	SpaceShip spaceShip;
-	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, Vector2f{1,1});
+	ParticleSystem particleSystem = CreateParticleSystem(0.2f, 2, 3, {0,0}, 4, 2);
+
+	SpaceShip spaceShip;                                                                     //space ship size // shoot delay
+	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, 0.7f        , 0.1f);
 	
 	Score gameScore;
 	SetUpScore(gameScore, 0.1f); // time between each score increase
@@ -59,8 +62,10 @@ int main()
 				window.close();
 			}
 
-			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::Space)) {
+			if (event.type == Event::KeyPressed && (event.key.code == Keyboard::Key::Space) && spaceShip.shootOpen) {
 				Shoot(spaceShip, game, direction);
+				spaceShip.shootOpen = false;
+				spaceShip.shootCounter = 0;
 			}
 
 			rotateShip(spaceShip, direction);
@@ -68,11 +73,18 @@ int main()
 			//std::cout << "x : " << direction.x << " y : " << direction.y << std::endl;
 		}
 
-
 		//std::cout << "is moving : " << spaceShip.isMoving << " deltaTime : " << deltaTime << std::endl;
 		//SlowDown mechanic while not moving
 		if (!spaceShip.isMoving) {
-			SlowDown(game, deltaTime, 4);
+			SlowDown(game, deltaTime, 10);
+		}
+
+		if (!spaceShip.shootOpen) {
+
+			if (spaceShip.shootCounter > spaceShip.shootDelay) {
+				spaceShip.shootOpen = true;
+			}
+			spaceShip.shootCounter += deltaTime;
 		}
 
 		PlayStageCollision(spaceShip, window, direction);
@@ -80,6 +92,7 @@ int main()
 		move(spaceShip, direction, deltaTime);
 		MoveBullets(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
+		UpdateParticleSystem(particleSystem, deltaTime);
 
 		//std::cout << spaceShip.position.x << std::endl;
 		
@@ -94,6 +107,8 @@ int main()
 		window.draw(square2);
 		UpdateDrawScore(gameScore, window);
 		DrawBullets(game, window);
+		DrawParticleSystem(particleSystem, window);
+		
 		//display the new window frame
 		window.display();
 	}

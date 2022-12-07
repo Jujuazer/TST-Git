@@ -1,8 +1,12 @@
-﻿  SpaceShooterSFML.cpp
+﻿  ParticleSystem.cpp
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\ParticleSystem.cpp(10,29): warning C4305: 'initialisation' : troncation de 'double' à 'float'
+  SpaceShooterSFML.cpp
 E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(5,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(6,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(7,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(8,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(9,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(49,22): warning C4551: liste d'arguments manquante dans l'appel de fonction
-  SpaceShooterSFML.vcxproj -> E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\x64\Debug\SpaceShooterSFML.exe
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(21,78): error C2660: 'CreateParticleSystem' : la fonction ne prend pas 6 arguments
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\ParticleSystem.h(28,16): message : voir la déclaration de 'CreateParticleSystem'
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(52,22): warning C4551: liste d'arguments manquante dans l'appel de fonction
+  Génération de code en cours...

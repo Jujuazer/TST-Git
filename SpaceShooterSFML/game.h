@@ -5,6 +5,7 @@
 using namespace sf;
 
 struct SpaceShip;
+
 struct Game
 {
 	std::list<Bullet> Bullets;

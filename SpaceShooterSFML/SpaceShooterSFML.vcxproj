@@ -136,6 +136,7 @@
     <ClCompile Include="bullet.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="math.cpp" />
+    <ClCompile Include="ParticleSystem.cpp" />
     <ClCompile Include="Score.cpp" />
     <ClCompile Include="SpaceShooterSFML.cpp" />
     <ClCompile Include="speed.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="bullet.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="math.h" />
+    <ClInclude Include="ParticleSystem.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="speed.h" />
     <ClInclude Include="UI.h" />
