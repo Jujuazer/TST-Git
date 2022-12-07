@@ -133,7 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="bullet.cpp" />
+    <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="math.cpp" />
     <ClCompile Include="Score.cpp" />
@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="bullet.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="Enemy.h" />
     <ClInclude Include="math.h" />
     <ClInclude Include="Score.h" />
     <ClInclude Include="speed.h" />

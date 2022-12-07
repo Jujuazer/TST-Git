@@ -7,6 +7,7 @@ using namespace sf;
 #include "UI.h";
 #include "math.h";
 #include "game.h";
+#include "Enemy.h"
 
 int main()
 {
@@ -77,15 +78,22 @@ int main()
 
 		}
 
+		generateEnemy(gameScore, game, window, direction);
+
+
 		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);
 		move(spaceShip, direction, deltaTime);
 		MoveBullets(game, deltaTime);
+		updateEnemy(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
 
 		//std::cout << spaceShip.position.x << std::endl;
 		
 
+		
+		
+		
 		
 		// Clear the window to black
 		window.clear();
@@ -94,6 +102,7 @@ int main()
 		updateDrawSpaceShip(spaceShip, window);
 		window.draw(square);
 		window.draw(square2);
+		drawEnemy(game, window);
 		UpdateDrawScore(gameScore, window);
 		DrawBullets(game, window);
 		//display the new window frame
