@@ -4,6 +4,11 @@
 #include "bullet.h"
 using namespace sf;
 
+enum GAMESTATE {
+	PLAYING = 0,
+	GAMEOVER = 1,
+};
+
 struct Game
 {
 	std::list<Bullet> Bullets;
@@ -12,6 +17,5 @@ struct Game
 void MoveBullets(Game& game, float deltaTime);
 
 void DrawBullets(Game& game, RenderWindow& window);
-
 
 
