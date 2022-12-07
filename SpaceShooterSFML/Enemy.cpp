@@ -3,6 +3,7 @@
 #include "Enemy.h"
 #include <random>
 #include "game.h"
+#include "bullet.h"
 using namespace sf;
 
 float randomXposition() {
@@ -11,6 +12,12 @@ float randomXposition() {
 	std::uniform_real_distribution<> dis(460, 1460);
 	return dis(gen);
 }
+
+float randomSpeedDelay() {
+	float r2 = static_cast <float> (rand()) / (static_cast <float> (RAND_MAX / 3));
+	return r2;
+}
+
 
 void setupEnemy(Enemy& enemy, RenderWindow& window, Vector2f direction, Game& game) {
 	ConvexShape enemyTest;
@@ -43,14 +50,17 @@ void setupEnemy(Enemy& enemy, RenderWindow& window, Vector2f direction, Game& ga
 	
 	
 
-
+	
 	enemy.shape = enemyTest;
 	enemy.shape2 = enemyTest2;
 	enemy.direction = direction;
 	enemy.speed = 100.0f;
 	enemy.position = Vector2f{ a , 0.f };
 	enemy.shape.setPosition(enemy.position);
+	enemy.shape2.setPosition(enemy.position);
 	enemy.direction.y = 1.0f;
+	enemy.speedDelay = 1 + randomSpeedDelay();
+	
 	
 	//push enemy
 	game.Enemies.push_back(enemy);
@@ -72,6 +82,26 @@ void updateEnemy(Game& game, float deltaTime) {
 	} 
 }
 	
+
+void enemyShoot(Game& game, RenderWindow& window, Vector2f direction) {
+	EnemyBullet bullet;
+	bullet.shape.setPointCount(3);
+	bullet.shape.setPoint(0, Vector2f(0, 0));
+	bullet.shape.setPoint(1, Vector2f(0, 10));
+	bullet.shape.setPoint(2, Vector2f(10, 5));
+	bullet.shape.setFillColor(Color::Red);
+	bullet.shape.setOutlineColor(Color::White);
+	bullet.shape.setOutlineThickness(1);
+	bullet.shape.setPosition(Vector2f{ 0.f, 0.f });
+	bullet.direction = direction;
+	bullet.speed = 100.0f;
+	bullet.position = Vector2f{ 0.f, 0.f };
+	bullet.shape.setPosition(bullet.position);
+	bullet.direction.y = 1.0f;
+	game.EnemyBullets.push_back(bullet);
+}
+
+
 
 
 

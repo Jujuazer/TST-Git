@@ -79,7 +79,7 @@ int main()
 		}
 
 		generateEnemy(gameScore, game, window, direction);
-
+		ChangeEnemySpeed(game, deltaTime);
 
 		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);

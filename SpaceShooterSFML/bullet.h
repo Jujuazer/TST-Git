@@ -15,11 +15,11 @@ struct Bullet {
 };
 
 struct EnemyBullet {
-	ConvexShape bulletForm;
+	ConvexShape shape;
 
 	Vector2f position;
 	Vector2f size;
-	float speed = 400;
+	float speed = 300;
 	float rotationAngle = 0;
 
 	Vector2f direction;
