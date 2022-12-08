@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 ﻿  SpaceShooterSFML.cpp
 C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(5,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
 C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(6,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
@@ -6,6 +7,10 @@ C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(8,10): 
 C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(9,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
   UI.cpp
 C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(85,110): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
+=======
+﻿  UI.cpp
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(90,110): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
+>>>>>>> Stashed changes
           with
           [
               T=int
@@ -14,7 +19,7 @@ C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(85,110): warning C424
           [
               T=float
           ]
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(85,80): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(90,80): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
           with
           [
               T=int
@@ -23,6 +28,5 @@ C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(85,80): warning C4244
           [
               T=float
           ]
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(83,8): warning C4101: 'mouse' : variable locale non référencée
-  Génération de code en cours...
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(88,8): warning C4101: 'mouse' : variable locale non référencée
   SpaceShooterSFML.vcxproj -> C:\Users\asus\VS_C++\repos\TST-Git\x64\Debug\SpaceShooterSFML.exe

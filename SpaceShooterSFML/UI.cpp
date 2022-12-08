@@ -17,6 +17,11 @@ void SetShape(ConvexShape& shape, float up, float down, float left, float right,
 void SetGameOver(GameOver& gameover, RenderWindow& window)
 {
 	Vector2f windowCenter = Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 };
+	Vector2f GOMessagePos = Vector2f(windowCenter.x, windowCenter.y - 50);
+	Vector2f GOEndScorePos = Vector2f(windowCenter.x - 25, windowCenter.y + 25);
+	Vector2f GORetryButtonPos = Vector2f(windowCenter.x - 125, windowCenter.y + 90);
+	Vector2f GORetryButtonSize = Vector2f(250, 60);
+	Vector2f GORetryTextPos = Vector2f(windowCenter.x - 15, windowCenter.y + 115);
 	sf::FloatRect textRect;
 
 	SetShape(gameover.background, 0, 1080, 0, 1920, Color(50, 0, 0, 255));
@@ -32,16 +37,16 @@ void SetGameOver(GameOver& gameover, RenderWindow& window)
 	textRect = gameover.message.getLocalBounds();
 	gameover.message.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);
-	gameover.message.setPosition(Vector2f(windowCenter.x, windowCenter.y - 50));
+	gameover.message.setPosition(GOMessagePos);
 
 	gameover.endScore = gameover.score->scoreDisplay;
 	textRect = gameover.endScore.getLocalBounds();
 	gameover.endScore.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f); 
-	gameover.endScore.setPosition(Vector2f(windowCenter.x - 25, windowCenter.y + 25));
+	gameover.endScore.setPosition(GOEndScorePos);
 
-	gameover.retryButton.setPosition(Vector2f(windowCenter.x - 125, windowCenter.y + 90));
-	gameover.retryButton.setSize(Vector2f(250 , 60));
+	gameover.retryButton.setPosition(GORetryButtonPos);
+	gameover.retryButton.setSize(GORetryButtonSize);
 	gameover.retryButton.setOutlineColor(Color(150, 50, 50, 255));
 	gameover.retryButton.setFillColor(Color(0, 0, 0, 0));
 	gameover.retryButton.setOutlineThickness(3);
@@ -53,7 +58,7 @@ void SetGameOver(GameOver& gameover, RenderWindow& window)
 	gameover.retryText.getLocalBounds();
 	gameover.retryText.setOrigin(textRect.left + textRect.width / 2.0f,
 		textRect.top + textRect.height / 2.0f);
-	gameover.retryText.setPosition(Vector2f(windowCenter.x - 15, windowCenter.y + 115));
+	gameover.retryText.setPosition(GORetryTextPos);
 
 }
 
