@@ -6,6 +6,8 @@
 #include "UI.h"
 #include <SFML/Graphics.hpp>
 
+struct Game;
+
 const int leftBound = 460;
 const int rightBound = 1460;
 const float biShotAngle = 10;
@@ -224,5 +226,14 @@ void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& di
 		spaceShip.backAnim.origin = { spaceShip.position.x + 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
 		spaceShip.backAnim2.origin = { spaceShip.position.x - 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
 		spaceShip.boxCollider.setPosition({ spaceShip.position.x - xOffsetBox, spaceShip.position.y - yOffsetBox });
+	}
+}
+
+void destroyBullet(Game& game) {
+	for (std::list<Bullet>::iterator it = game.Bullets.begin(); it != game.Bullets.end(); it++) {
+		if ((*it).position.y > 1000) {
+			game.Bullets.erase(it);
+			break;
+		}
 	}
 }

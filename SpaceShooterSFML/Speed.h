@@ -56,3 +56,5 @@ void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& di
 void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction);
 
 void CheckEnemyCollision(Game& game, SpaceShip& spaceShip, GameOver& gameOver, GAMESTATE& gameState);
+
+void destroyBullet(Game& game);

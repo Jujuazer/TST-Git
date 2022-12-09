@@ -120,6 +120,7 @@ int main()
 
 		destroyEnemy(game);
 		destroyEnemyBullet(game);
+		destroyBullet(game);
 
 
 		// Clear the window to black
