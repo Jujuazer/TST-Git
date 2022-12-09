@@ -22,7 +22,7 @@ int main()
 	//ParticleSystem particleSystem = CreateParticleSystem(0.2f, 2, 3, {0,0}, 4, 2);
 
 	SpaceShip spaceShip;                                                                     //space ship size // shoot delay
-	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, 0.7f        , 0.1f);
+	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, 0.75f        , 0.1f);
 	
 	Score gameScore;
 	SetUpScore(gameScore, 0.1f); // time between each score increase
