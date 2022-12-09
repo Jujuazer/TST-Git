@@ -10,7 +10,7 @@ const int leftBound = 460;
 const int rightBound = 1460;
 const float biShotAngle = 10;
 const int xOffsetBox = 18;
-const int yOffsetBox = 50;
+const int yOffsetBox = 40;
 
 void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, float spaceShipSize, float shootDelay) {
 
@@ -123,6 +123,17 @@ void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
 	spaceShip.spaceship1.setRotation(angleDegs);
 	spaceShip.spaceship2.setRotation(angleDegs);
 	spaceShip.spaceship3.setRotation(angleDegs);
+}
+
+void CheckEnemyBulletCollision(Game& game, SpaceShip& spaceShip, GameOver& gameOver, GAMESTATE& gameState) {
+	for (std::list<EnemyBullet>::iterator it = game.EnemyBullets.begin(); it != game.EnemyBullets.end(); it++) {
+
+		if (IsOverlappingBoxOnBox((*it).boxCollider.getPosition(), (*it).boxCollider.getSize(), spaceShip.boxCollider.getPosition(), spaceShip.boxCollider.getSize())) {
+			it = game.EnemyBullets.erase(it);
+			DisplayGameOver(gameOver, gameState);
+			break;
+		}
+	}
 }
 
 void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction) {
