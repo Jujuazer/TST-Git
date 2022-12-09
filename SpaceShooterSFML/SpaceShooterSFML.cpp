@@ -98,7 +98,6 @@ int main()
 		MoveBullets(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
 
-		//std::cout << spaceShip.position.x << std::endl;
 
 
 

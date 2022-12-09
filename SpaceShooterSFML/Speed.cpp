@@ -8,10 +8,11 @@ void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, Vector2f 
 
 	spaceShip.position = spaceShipPosition;
 	spaceShip.size = spaceShipSize;
-	spaceShip.spaceship1.setPointCount(3);
+	spaceShip.spaceship1.setPointCount(4);
 	spaceShip.spaceship1.setPoint(0, Vector2f(0, -75));
-	spaceShip.spaceship1.setPoint(1, Vector2f(-25, 25));
-	spaceShip.spaceship1.setPoint(2, Vector2f(25, 25));
+	spaceShip.spaceship1.setPoint(1, Vector2f(-25, 20));
+	spaceShip.spaceship1.setPoint(2, Vector2f(0, 30));
+	spaceShip.spaceship1.setPoint(3, Vector2f(25, 20));
 	spaceShip.spaceship1.setPosition(spaceShipPosition);
 
 	spaceShip.spaceship2.setPointCount(3);
