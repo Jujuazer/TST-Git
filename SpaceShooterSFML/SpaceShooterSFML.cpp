@@ -17,7 +17,7 @@ int main()
 
 	Clock mainClock;
 
-	Game game;
+	Game game;   // c faux nous c compliqué
 
 	//ParticleSystem particleSystem = CreateParticleSystem(0.05f, 0.2f, 1, 5, 1, {0, 1}, {800, 800});
 
