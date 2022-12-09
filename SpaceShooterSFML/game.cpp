@@ -101,34 +101,32 @@ void moveEnemy(Game& game, float deltaTime) {
 void generateEnemy(Score& Gscore, Game& game, RenderWindow& window, Vector2f direction) {
 	int x;
 	int y = 0;
-	int* py = &y;
-	int z = 5;
-	int* pz = &z;
+	int z = 0;
 	
 	if (y < 15) {
 		y = 5 * (Gscore.score / 300);
 	}
-	if (z < 50) {
+	if (z < 40) {
 		z = 5 * (Gscore.score / 150);
 	}
 
 	
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(0 + y, 5 + z);
+	std::uniform_int_distribution<> dis(1 + y, 5 + z);
 	int a = dis(gen);
 
 	//each time score increase by 300, y increase by 5
 	y = 5 * (Gscore.score / 300);
 	
 	if (Gscore.score < 300) {
-		x = 50;
-	}
-	else if (Gscore.score < 600) {
 		x = 40;
 	}
-	else if (Gscore.score >= 600) {
+	else if (Gscore.score < 600) {
 		x = 30;
+	}
+	else if (Gscore.score >= 600) {
+		x = 20;
 	}
 
 	

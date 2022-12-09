@@ -11,8 +11,7 @@ struct Bullet {
     Vector2f size;
     float speed = 400;
     float rotationAngle = 0;
-
-    Vector2f direction;
+	Vector2f direction;
 };
 
 struct EnemyBullet {
