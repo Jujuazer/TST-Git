@@ -2,11 +2,15 @@
 #include <iostream>
 #include "speed.h"
 #include "math.h"
+#include "Enemy.h"
+#include "UI.h"
 #include <SFML/Graphics.hpp>
 
 const int leftBound = 460;
 const int rightBound = 1460;
 const float biShotAngle = 10;
+const int xOffsetBox = 18;
+const int yOffsetBox = 50;
 
 void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, float spaceShipSize, float shootDelay) {
 
@@ -34,7 +38,20 @@ void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, float spa
 	spaceShip.spaceship3.setFillColor(Color(150, 150, 150));
 	spaceShip.spaceship3.setPosition(spaceShipPosition);
 
+
+	float width = spaceShip.spaceship1.getGlobalBounds().width;
+	float height = spaceShip.spaceship1.getGlobalBounds().height;
+	
+
+	spaceShip.boxCollider.setSize({width, height});
+	spaceShip.boxCollider.setPosition(spaceShip.position);
+	spaceShip.boxCollider.setOutlineColor(Color{ 255, 0, 0 });
+	spaceShip.boxCollider.setOutlineThickness(2);
+
 	spaceShip.shootDelay = shootDelay;
+
+	spaceShip.backAnim = CreateParticleSystem(0.05f, 0.2f, 1, 5, 1, { 0, 1 }, {spaceShip.position.x + 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height});
+	spaceShip.backAnim2 = CreateParticleSystem(0.05f, 0.2f, 1, 5, 1, { 0, 1 }, { spaceShip.position.x - 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height });
 }
 
 void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window)
@@ -42,6 +59,19 @@ void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window)
 	window.draw(spaceShip.spaceship3);
 	window.draw(spaceShip.spaceship2);
 	window.draw(spaceShip.spaceship1);
+
+	DrawParticleSystem(spaceShip.backAnim, window);
+	DrawParticleSystem(spaceShip.backAnim2, window);
+
+	//window.draw(spaceShip.boxCollider);
+}
+
+void CheckEnemyCollision(Game& game, SpaceShip& spaceShip, GameOver& gameOver, GAMESTATE& gameState) {
+	for (std::list<Enemy>::iterator it = game.Enemies.begin(); it != game.Enemies.end(); it++) {
+		if (IsOverlappingBoxOnBox(spaceShip.boxCollider.getPosition(), spaceShip.boxCollider.getSize(), (*it).boxCollider.getPosition(), (*it).boxCollider.getSize())) {
+			DisplayGameOver(gameOver, gameState);
+		}
+	}
 }
 
 void SetSpaceShipPosition(SpaceShip& spaceShip, Vector2f position) {
@@ -50,6 +80,8 @@ void SetSpaceShipPosition(SpaceShip& spaceShip, Vector2f position) {
 	spaceShip.spaceship1.setPosition(spaceShip.position);
 	spaceShip.spaceship2.setPosition(spaceShip.position);
 	spaceShip.spaceship3.setPosition(spaceShip.position);
+
+	spaceShip.boxCollider.setPosition({spaceShip.position.x - xOffsetBox, spaceShip.position.y - yOffsetBox});
 }
 
 void move(SpaceShip& spaceShip, Vector2f direction, float deltaTime) {
@@ -59,7 +91,15 @@ void move(SpaceShip& spaceShip, Vector2f direction, float deltaTime) {
 	spaceShip.position.x += deltaX;
 	spaceShip.position.y += deltaY;
 
+	spaceShip.backAnim.origin.x += deltaX;
+	spaceShip.backAnim.origin.y += deltaY;
+
+	spaceShip.backAnim2.origin.x += deltaX;
+	spaceShip.backAnim2.origin.y += deltaY;
+
 	SetSpaceShipPosition(spaceShip, spaceShip.position);
+	UpdateParticleSystem(spaceShip.backAnim, deltaTime);
+	UpdateParticleSystem(spaceShip.backAnim2, deltaTime);
 }
 
 void rotateShip(SpaceShip& spaceShip, Vector2f direction) {
@@ -133,9 +173,6 @@ void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction) {
 
 	}
 
-
-
-
 	x.bulletForm.setPointCount(3);
 	x.bulletForm.setPoint(0, Vector2f(0, -20));
 	x.bulletForm.setPoint(1, Vector2f(-20, 10));
@@ -143,6 +180,14 @@ void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction) {
 	x.bulletForm.setFillColor(Color(200, 200, 200));
 	x.bulletForm.setPosition(x.position);
 	x.bulletForm.setRotation(x.rotationAngle);
+
+	float width = x.bulletForm.getGlobalBounds().width;
+	float height = x.bulletForm.getGlobalBounds().height;
+
+	x.boxCollider.setSize({ width, height });
+	x.boxCollider.setPosition(x.position);
+	x.boxCollider.setOutlineColor(Color{ 255, 0, 0 });
+	x.boxCollider.setOutlineThickness(2);
 
 	game.Bullets.push_back(x);
 }
@@ -152,20 +197,32 @@ void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& di
 	//left
 	if (spaceShip.position.x < leftBound + spaceShip.spaceship1.getGlobalBounds().width) {
 		SetSpaceShipPosition(spaceShip, Vector2f { leftBound + spaceShip.spaceship1.getGlobalBounds().width ,spaceShip.position.y });
+		spaceShip.backAnim.origin = { spaceShip.position.x + 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
+		spaceShip.backAnim2.origin = { spaceShip.position.x - 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
+		spaceShip.boxCollider.setPosition({ spaceShip.position.x - xOffsetBox, spaceShip.position.y - yOffsetBox });
 	}
 
 	//right  
 	else if (spaceShip.position.x + spaceShip.spaceship1.getGlobalBounds().width > rightBound) {
 		SetSpaceShipPosition(spaceShip, { rightBound - spaceShip.spaceship1.getGlobalBounds().width,spaceShip.position.y });
+		spaceShip.backAnim.origin = { spaceShip.position.x + 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
+		spaceShip.backAnim2.origin = { spaceShip.position.x - 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
+		spaceShip.boxCollider.setPosition({ spaceShip.position.x - xOffsetBox, spaceShip.position.y - yOffsetBox });
 	}
 
 	//top
 	else if (spaceShip.position.y < 0) {
 		SetSpaceShipPosition(spaceShip, { spaceShip.position.x, 0 });
+		spaceShip.backAnim.origin = { spaceShip.position.x + 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
+		spaceShip.backAnim2.origin = { spaceShip.position.x - 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
+		spaceShip.boxCollider.setPosition({ spaceShip.position.x - xOffsetBox, spaceShip.position.y - yOffsetBox });
 	}
 
 	//bottom 
 	else if (spaceShip.position.y + spaceShip.spaceship1.getGlobalBounds().height > window.getSize().y) {
 		SetSpaceShipPosition(spaceShip, { spaceShip.position.x, window.getSize().y - spaceShip.spaceship1.getGlobalBounds().height });
+		spaceShip.backAnim.origin = { spaceShip.position.x + 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
+		spaceShip.backAnim2.origin = { spaceShip.position.x - 10, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height };
+		spaceShip.boxCollider.setPosition({ spaceShip.position.x - xOffsetBox, spaceShip.position.y - yOffsetBox });
 	}
 }

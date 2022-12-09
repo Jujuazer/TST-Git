@@ -19,7 +19,7 @@ int main()
 
 	Game game;
 
-	//ParticleSystem particleSystem = CreateParticleSystem(0.2f, 2, 3, {0,0}, 4, 2);
+	//ParticleSystem particleSystem = CreateParticleSystem(0.05f, 0.2f, 1, 5, 1, {0, 1}, {800, 800});
 
 	SpaceShip spaceShip;                                                                     //space ship size // shoot delay
 	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, 0.75f        , 0.1f);
@@ -114,6 +114,8 @@ int main()
 		updateEnemy(game, deltaTime);
 		updateEnemyBullets(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
+		CheckEnemyCollision(game, spaceShip, gameoverScreen, gameState);
+		CheckBulletCollision(game);
 		//UpdateParticleSystem(particleSystem, deltaTime);
 
 		destroyEnemy(game);
@@ -134,12 +136,12 @@ int main()
 		window.draw(square);
 		window.draw(square2);
 		UpdateDrawScore(gameScore, window);
-		DrawBullets(game, window);
 		}
 		else if (gameState == 1)
 		{
-		DrawGameOver(gameoverScreen, window, deltaTime);
+			DrawGameOver(gameoverScreen, window, deltaTime);
 		}
+
 		//DrawParticleSystem(particleSystem, window);
 		
 		//display the new window frame

@@ -5,6 +5,7 @@ using namespace sf;
 
 struct Bullet {
     ConvexShape bulletForm;
+	RectangleShape boxCollider;
 
     Vector2f position;
     Vector2f size;

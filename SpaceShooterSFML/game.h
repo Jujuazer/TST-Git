@@ -20,6 +20,8 @@ struct Game
 	float originalDeltaTime;
 };
 
+void CheckBulletCollision(Game& game);
+
 void MoveBullets(Game& game, float deltaTime);
 
 void DrawBullets(Game& game, RenderWindow& window);
