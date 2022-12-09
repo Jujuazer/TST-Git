@@ -1,29 +1,3 @@
-﻿  SpaceShooterSFML.cpp
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(5,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(6,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(7,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(8,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(9,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(64,22): warning C4551: liste d'arguments manquante dans l'appel de fonction
-  UI.cpp
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(90,115): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(90,85): warning C4244: 'argument' : conversion de 'T' en 'T', perte possible de données
-          with
-          [
-              T=int
-          ]
-          and
-          [
-              T=float
-          ]
-C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\UI.cpp(88,8): warning C4101: 'mouse' : variable locale non référencée
-  Génération de code en cours...
+﻿  speed.cpp
+C:\Users\asus\VS_C++\repos\TST-Git\SpaceShooterSFML\speed.cpp(70,17): warning C4244: '=' : conversion de 'double' en 'float', perte possible de données
   SpaceShooterSFML.vcxproj -> C:\Users\asus\VS_C++\repos\TST-Git\x64\Debug\SpaceShooterSFML.exe
