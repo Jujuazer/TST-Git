@@ -112,6 +112,8 @@ int main()
 		MoveBullets(game, deltaTime);
 		updateEnemy(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
+		CheckEnemyCollision(game, spaceShip, gameoverScreen, gameState);
+		CheckBulletCollision(game);
 		//UpdateParticleSystem(particleSystem, deltaTime);
 
 		//std::cout << spaceShip.position.x << std::endl;

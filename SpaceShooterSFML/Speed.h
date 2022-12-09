@@ -4,6 +4,7 @@
 #include "bullet.h"
 #include "game.h"
 #include "ParticleSystem.h"
+#include "UI.h"
 using namespace sf;
 
 enum shootMode {
@@ -21,6 +22,8 @@ struct SpaceShip
     ConvexShape spaceship2;
     ConvexShape spaceship3;
 
+    RectangleShape boxCollider;
+
     Vector2f position;
     float size;
     float speed = 400;
@@ -32,9 +35,10 @@ struct SpaceShip
     bool shootOpen = true;
     bool isMoving = false;
 
-    shootMode shootmode = BISHOT;
+    shootMode shootmode = SINGLE;
 
     ParticleSystem backAnim;
+    ParticleSystem backAnim2;
 };
 
 void setupSpaceShip(SpaceShip& spaceShip, Vector2f spaceShipPosition, float spaceShipSize, float shootDelay);
@@ -51,3 +55,4 @@ void PlayStageCollision(SpaceShip& spaceShip, RenderWindow& window, Vector2f& di
 
 void Shoot(SpaceShip& spaceShip, Game& game, Vector2f direction);
 
+void CheckEnemyCollision(Game& game, SpaceShip& spaceShip, GameOver& gameOver, GAMESTATE& gameState);

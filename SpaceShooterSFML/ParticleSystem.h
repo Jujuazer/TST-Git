@@ -14,6 +14,8 @@ struct Particle
 	Vector2f direction = {0,0};
 	float speed = 100;
 
+	Vector2f origin;
+
 	Vector2f position = { 0,0 };
 };
 

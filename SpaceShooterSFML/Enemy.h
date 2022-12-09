@@ -8,6 +8,8 @@ struct Game;
 struct Enemy {
 	ConvexShape shape;
 	ConvexShape shape2;
+	RectangleShape boxCollider;
+
 	Vector2f position;
 	Vector2f direction;
 	float speed = 50.0f;

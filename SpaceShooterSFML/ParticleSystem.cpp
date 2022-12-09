@@ -17,6 +17,7 @@ void AddParticleToSystem (ParticleSystem& particleSys, float lifeTime) {
 
 	part.circleShape.setPosition({ x, y });
 	part.position = { x, y };
+	part.origin = particleSys.origin;
 
 	//random avec premier nombre qui est l'amplitude (ex : 100 a 300, amplitude = 200) deuxieme est le mini alors : min = 100 donc generation rand() % 200 + 100;
 
@@ -51,8 +52,8 @@ void UpdateParticleSystem(ParticleSystem& particleSys, float deltaTime) {
 		float scale = sin(PI * (*it).timeCounter / (*it).lifeTime );
 		(*it).circleShape.setScale({scale, scale});
 
-		float x = particleSys.origin.x + cos((*it).angle) * (*it).distance;
-		float y = particleSys.origin.y + sin((*it).angle) * (*it).distance;
+		float x = (*it).origin.x + cos((*it).angle) * (*it).distance;
+		float y = (*it).origin.y + sin((*it).angle) * (*it).distance;
 
 		(*it).circleShape.setPosition({ x, y });
 		(*it).position = { x, y };
@@ -71,7 +72,7 @@ void UpdateParticleSystem(ParticleSystem& particleSys, float deltaTime) {
 		particleSys.timerCreateParticle = 0.0f;
 		float lifeTime = rand() % (int)particleSys.maxLifeTimeParticle + particleSys.minLifeTimeParticle;
 
-		std::cout << "new particle created and life time : " << lifeTime << std::endl;
+		//std::cout << "new particle created and life time : " << lifeTime << std::endl;
 		AddParticleToSystem(particleSys, lifeTime);
 	}
 }

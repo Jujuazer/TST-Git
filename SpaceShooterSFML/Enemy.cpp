@@ -6,6 +6,8 @@
 #include "bullet.h"
 using namespace sf;
 
+const float xOffsetBox = 30;
+
 float randomXposition() {
 	std::random_device rd;
 	std::mt19937 gen(rd());
@@ -61,7 +63,14 @@ void setupEnemy(Enemy& enemy, RenderWindow& window, Vector2f direction, Game& ga
 	enemy.direction.y = 1.0f;
 	enemy.speedDelay = 1 + randomSpeedDelay();
 	
-	
+	float width = enemy.shape.getGlobalBounds().width;
+	float height = enemy.shape.getGlobalBounds().height;
+
+	enemy.boxCollider.setSize({ width, height });
+	enemy.boxCollider.setPosition(enemy.position);
+	enemy.boxCollider.setOutlineColor(Color{ 255, 0, 0 });
+	enemy.boxCollider.setOutlineThickness(2);
+
 	//push enemy
 	game.Enemies.push_back(enemy);
 }
@@ -78,7 +87,7 @@ void updateEnemy(Game& game, float deltaTime) {
 		(*it).shape.setPosition((*it).position);
 		(*it).shape2.setPosition((*it).position);
 		
-
+		(*it).boxCollider.setPosition({ (*it).position.x - xOffsetBox, (*it).position.y });
 	} 
 }
 	

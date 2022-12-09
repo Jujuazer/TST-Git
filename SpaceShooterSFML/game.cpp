@@ -6,12 +6,37 @@
 #include "Score.h"
 #include "Enemy.h"
 #include <random>
+#include "math.h"
+#include "UI.h"
+struct SpaceShip;
+
+const float xOffsetBox = 20;
+const float yOffsetBox = 20;
 
 float randomEnemySpeed() {
 	std::random_device rd;
 	std::mt19937 mt(rd());
 	std::uniform_real_distribution<float> dist(300.0f, 600.0f);
 	return dist(mt);
+}
+
+void CheckBulletCollision(Game& game) {
+	bool isBreak = false;
+	for (std::list<Bullet>::iterator it = game.Bullets.begin(); it != game.Bullets.end(); it++) {
+		for (std::list<Enemy>::iterator it2 = game.Enemies.begin(); it2 != game.Enemies.end(); it2++) {
+
+			if (IsOverlappingBoxOnBox((*it).boxCollider.getPosition(), (*it).boxCollider.getSize(), (*it2).boxCollider.getPosition(), (*it2).boxCollider.getSize())) {
+				it2 = game.Enemies.erase(it2);
+				it = game.Bullets.erase(it);
+				isBreak = true;
+				break;
+			}
+		}
+		if (isBreak) {
+			break;
+			isBreak = false;
+		}
+	}
 }
 
 void MoveBullets(Game& game, float deltaTime) {
@@ -23,13 +48,14 @@ void MoveBullets(Game& game, float deltaTime) {
 		(*it).position.y += deltaY;
 
 		(*it).bulletForm.setPosition((*it).position);
+		(*it).boxCollider.setPosition({ (*it).position.x - xOffsetBox, (*it).position.y - yOffsetBox});
 	}
-	//set position form
 }
 
 void DrawBullets(Game& game, RenderWindow& window) {
 	for (std::list<Bullet>::iterator it = game.Bullets.begin(); it != game.Bullets.end(); it++) {
 		window.draw((*it).bulletForm);
+		//window.draw((*it).boxCollider);
 	}
 }
 
@@ -37,6 +63,7 @@ void drawEnemy(Game& game, RenderWindow& window) {
 	for (std::list<Enemy>::iterator it = game.Enemies.begin(); it != game.Enemies.end(); it++) {
 		window.draw((*it).shape2);
 		window.draw((*it).shape);
+		//window.draw((*it).boxCollider);
 	}
 }
 
@@ -46,7 +73,6 @@ void moveEnemy(Game& game, float deltaTime) {
 		float deltaY = (*it).speed * (*it).direction.y * deltaTime;
 		(*it).position.x -= deltaX;
 		(*it).position.y -= deltaY;
-
 		(*it).shape.setPosition((*it).position);
 	}
 }
