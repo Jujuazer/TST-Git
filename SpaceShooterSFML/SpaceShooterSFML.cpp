@@ -105,15 +105,19 @@ int main()
 
 		generateEnemy(gameScore, game, window, direction);
 		ChangeEnemySpeed(game, deltaTime);
+		EnemyShoot(game, deltaTime, window);
 
 		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);
 		move(spaceShip, direction, deltaTime);
 		MoveBullets(game, deltaTime);
 		updateEnemy(game, deltaTime);
+		updateEnemyBullets(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
 		//UpdateParticleSystem(particleSystem, deltaTime);
 
+		destroyEnemy(game);
+		destroyEnemyBullet(game);
 
 
 		// Clear the window to black
@@ -124,9 +128,11 @@ int main()
 		if (gameState == GAMESTATE::PLAYING)
 		{
 		updateDrawSpaceShip(spaceShip, window);
+		drawEnemy(game, window);
+		DrawBullets(game, window);
+		DrawEnemyBullets(game, window);
 		window.draw(square);
 		window.draw(square2);
-		drawEnemy(game, window);
 		UpdateDrawScore(gameScore, window);
 		DrawBullets(game, window);
 		}
