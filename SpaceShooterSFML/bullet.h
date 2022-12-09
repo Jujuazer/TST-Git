@@ -13,3 +13,14 @@ struct Bullet {
 
     Vector2f direction;
 };
+
+struct EnemyBullet {
+	ConvexShape shape;
+
+	Vector2f position;
+	Vector2f size;
+	float speed = 300;
+	float rotationAngle = 0;
+
+	Vector2f direction;
+};
