@@ -1,8 +1,7 @@
-﻿  SpaceShooterSFML.cpp
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(5,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(6,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(7,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(8,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(9,10): warning C4067: jetons inattendus après la directive du préprocesseur - saut de ligne attendu
-E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\SpaceShooterSFML.cpp(64,22): warning C4551: liste d'arguments manquante dans l'appel de fonction
+﻿  Enemy.cpp
+E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\SpaceShooterSFML\Enemy.cpp(15,12): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
+ParticleSystem.obj : warning LNK4099: PDB 'vc143.pdb' n'a pu être trouvé avec 'ParticleSystem.obj' ou sur 'E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\x64\Debug\vc143.pdb' ; l'objet sera lié sans informations de débogage
+SpaceShooterSFML.obj : warning LNK4099: PDB 'vc143.pdb' n'a pu être trouvé avec 'SpaceShooterSFML.obj' ou sur 'E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\x64\Debug\vc143.pdb' ; l'objet sera lié sans informations de débogage
+speed.obj : warning LNK4099: PDB 'vc143.pdb' n'a pu être trouvé avec 'speed.obj' ou sur 'E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\x64\Debug\vc143.pdb' ; l'objet sera lié sans informations de débogage
+UI.obj : warning LNK4099: PDB 'vc143.pdb' n'a pu être trouvé avec 'UI.obj' ou sur 'E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\x64\Debug\vc143.pdb' ; l'objet sera lié sans informations de débogage
   SpaceShooterSFML.vcxproj -> E:\COURS C++\Shooter\SpaceShooterSFML\TST-Git\x64\Debug\SpaceShooterSFML.exe

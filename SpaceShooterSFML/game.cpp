@@ -162,7 +162,6 @@ void EnemyShoot(Game& game, float deltaTime, RenderWindow& window) {
 			EnemyBullet bullet;
 			setupEnemyBullet(bullet, window, (*it).direction, game, (*it).position);
 			(*it).shootCounter = 0.0f;
-			(*it).shootCounter = 0.0f;
 			(*it).shootDelay = randomEnemyShootDelay2();
 		}
 	}

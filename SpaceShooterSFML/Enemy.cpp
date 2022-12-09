@@ -155,7 +155,7 @@ void destroyEnemy(Game& game) {
 //destroy EnemyBullet when out of screen
 void destroyEnemyBullet(Game& game) {
 	for (std::list<EnemyBullet>::iterator it = game.EnemyBullets.begin(); it != game.EnemyBullets.end(); it++) {
-		if ((*it).position.y > 0.0f) {
+		if ((*it).position.y > 1000) {
 			game.EnemyBullets.erase(it);
 			break;
 		}
