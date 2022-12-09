@@ -33,6 +33,8 @@ void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, float spa
 	spaceShip.spaceship3.setPosition(spaceShipPosition);
 
 	spaceShip.shootDelay = shootDelay;
+
+	spaceShip.backAnim = CreateParticleSystem(0.05f, 0.2f, 1, 5, 1, { 0, 1 }, {spaceShip.position.x, spaceShip.position.y + spaceShip.spaceship2.getGlobalBounds().height});
 }
 
 void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window)
@@ -40,6 +42,7 @@ void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window)
 	window.draw(spaceShip.spaceship3);
 	window.draw(spaceShip.spaceship2);
 	window.draw(spaceShip.spaceship1);
+	DrawParticleSystem(spaceShip.backAnim, window);
 }
 
 void SetSpaceShipPosition(SpaceShip& spaceShip, Vector2f position) {
@@ -57,7 +60,11 @@ void move(SpaceShip& spaceShip, Vector2f direction, float deltaTime) {
 	spaceShip.position.x += deltaX;
 	spaceShip.position.y += deltaY;
 
+	spaceShip.backAnim.origin.x += deltaX;
+	spaceShip.backAnim.origin.y += deltaY;
+
 	SetSpaceShipPosition(spaceShip, spaceShip.position);
+	UpdateParticleSystem(spaceShip.backAnim, deltaTime);
 }
 
 void rotateShip(SpaceShip& spaceShip, Vector2f direction) {

@@ -3,6 +3,7 @@
 #include <list>
 #include "bullet.h"
 #include "game.h"
+#include "ParticleSystem.h"
 using namespace sf;
 
 enum shootMode {
@@ -32,6 +33,8 @@ struct SpaceShip
     bool isMoving = false;
 
     shootMode shootmode = BISHOT;
+
+    ParticleSystem backAnim;
 };
 
 void setupSpaceShip(SpaceShip& spaceShip, Vector2f spaceShipPosition, float spaceShipSize, float shootDelay);
