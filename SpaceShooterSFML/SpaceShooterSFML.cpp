@@ -80,13 +80,17 @@ int main()
 
 		generateEnemy(gameScore, game, window, direction);
 		ChangeEnemySpeed(game, deltaTime);
+		EnemyShoot(game, deltaTime, window);
 
 		PlayStageCollision(spaceShip, window, direction);
 		normalizeVector(direction);
 		move(spaceShip, direction, deltaTime);
 		MoveBullets(game, deltaTime);
 		updateEnemy(game, deltaTime);
+		updateEnemyBullets(game, deltaTime);
 		AddPerTime(gameScore, deltaTime, 1);
+		destroyEnemy(game);
+		destroyEnemyBullet(game);
 
 		//std::cout << spaceShip.position.x << std::endl;
 		
@@ -100,11 +104,12 @@ int main()
 
 		// Whatever I want to draw goes here
 		updateDrawSpaceShip(spaceShip, window);
+		drawEnemy(game, window);
+		DrawBullets(game, window);
+		DrawEnemyBullets(game, window);
 		window.draw(square);
 		window.draw(square2);
-		drawEnemy(game, window);
 		UpdateDrawScore(gameScore, window);
-		DrawBullets(game, window);
 		//display the new window frame
 		window.display();
 	}
