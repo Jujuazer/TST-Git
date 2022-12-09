@@ -115,11 +115,6 @@ int main()
 		//UpdateParticleSystem(particleSystem, deltaTime);
 
 
-		
-		
-		
-		
-
 
 		// Clear the window to black
 		window.clear();

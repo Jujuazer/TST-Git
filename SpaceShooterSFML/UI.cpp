@@ -87,10 +87,10 @@ void RetryButtonF(GameOver gameover,RenderWindow& window)
 {
 	Mouse mouse;
 	Vector2f windowCenter = Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 };
-	bool isOnButton = IsOverlappingCircleOnBox(Vector2f(Mouse::getPosition(window).x, Mouse::getPosition(window).y), 1, gameover.retryButton.getPosition() + gameover.retryButton.getSize() / 2.0f, gameover.retryButton.getSize());
+	bool isOnRetryButton = IsOverlappingCircleOnBox(Vector2f(Mouse::getPosition(window).x, Mouse::getPosition(window).y), 1, gameover.retryButton.getPosition() + gameover.retryButton.getSize() / 2.0f, gameover.retryButton.getSize());
 
 
-	if (isOnButton)
+	if (isOnRetryButton)
 	{
 		if (Mouse::isButtonPressed(Mouse::Button::Left))
 		{
