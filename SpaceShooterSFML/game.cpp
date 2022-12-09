@@ -13,6 +13,9 @@ struct SpaceShip;
 const float xOffsetBox = 20;
 const float yOffsetBox = 20;
 
+const float xoff = 4;
+const float yoff = 0;
+
 float randomEnemySpeed() {
 	std::random_device rd;
 	std::mt19937 mt(rd());
@@ -63,7 +66,7 @@ void MoveBullets(Game& game, float deltaTime) {
 		(*it).position.y += deltaY;
 
 		(*it).bulletForm.setPosition((*it).position);
-		(*it).boxCollider.setPosition({ (*it).position.x - xOffsetBox, (*it).position.y - yOffsetBox});
+		(*it).boxCollider.setPosition({ (*it).position.x - xoff, (*it).position.y - yoff});
 	}
 }
 
@@ -77,6 +80,7 @@ void DrawBullets(Game& game, RenderWindow& window) {
 void DrawEnemyBullets(Game& game, RenderWindow& window) {
 	for (std::list<EnemyBullet>::iterator it = game.EnemyBullets.begin(); it != game.EnemyBullets.end(); it++) {
 		window.draw((*it).shape);
+		//window.draw((*it).boxCollider);
 	}
 }
 
@@ -101,7 +105,7 @@ void moveEnemy(Game& game, float deltaTime) {
 void generateEnemy(Score& Gscore, Game& game, RenderWindow& window, Vector2f direction) {
 	int x;
 	int y = 0;
-	int z = 0;
+	int z = 5;
 	
 	if (y < 15) {
 		y = 5 * (Gscore.score / 300);
@@ -113,7 +117,7 @@ void generateEnemy(Score& Gscore, Game& game, RenderWindow& window, Vector2f dir
 	
 	std::random_device rd;
 	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(1 + y, 5 + z);
+	std::uniform_int_distribution<> dis(1 + y, 10 + z);
 	int a = dis(gen);
 
 	//each time score increase by 300, y increase by 5
@@ -129,7 +133,6 @@ void generateEnemy(Score& Gscore, Game& game, RenderWindow& window, Vector2f dir
 		x = 20;
 	}
 
-	
 
 	if (Gscore.score % x == 0 && Gscore.score != 0) {
 		for (int i = 0; i < a; i++) {
@@ -172,6 +175,7 @@ void updateEnemyBullets(Game& game, float deltaTime) {
 		(*it).position.y += deltaY;
 
 		(*it).shape.setPosition((*it).position);
+		(*it).boxCollider.setPosition({ (*it).position.x - xoff, (*it).position.y - yoff });
 	}
 }
 	

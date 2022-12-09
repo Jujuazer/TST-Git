@@ -41,6 +41,8 @@ struct SpaceShip
     ParticleSystem backAnim2;
 };
 
+void CheckEnemyBulletCollision(Game& game, SpaceShip& spaceShip, GameOver& gameOver, GAMESTATE& gameState);
+
 void setupSpaceShip(SpaceShip& spaceShip, Vector2f spaceShipPosition, float spaceShipSize, float shootDelay);
 
 void updateDrawSpaceShip(SpaceShip& spaceShip, RenderWindow& window);

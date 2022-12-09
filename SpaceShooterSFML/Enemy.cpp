@@ -127,6 +127,17 @@ void setupEnemyBullet(EnemyBullet& enemyBullet, RenderWindow& window, Vector2f d
 	enemyBullet.position = position;
 	enemyBullet.shape.setPosition(enemyBullet.position);
 	enemyBullet.direction.y = 1.0f;
+	
+	float width = enemyBullet.shape.getGlobalBounds().width;
+	float height = enemyBullet.shape.getGlobalBounds().height;
+
+	enemyBullet.boxCollider.setSize({ width, height });
+	enemyBullet.boxCollider.setPosition(enemyBullet.position);
+	enemyBullet.boxCollider.setOutlineColor(Color{ 255, 0, 0 });
+	enemyBullet.boxCollider.setOutlineThickness(2);
+
+
+
 	//push enemyBullet
 	game.EnemyBullets.push_back(enemyBullet);
 }

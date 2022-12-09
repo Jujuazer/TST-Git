@@ -17,12 +17,12 @@ int main()
 
 	Clock mainClock;
 
-	Game game;
+	Game game;   // c faux nous c compliqué
 
 	//ParticleSystem particleSystem = CreateParticleSystem(0.05f, 0.2f, 1, 5, 1, {0, 1}, {800, 800});
 
 	SpaceShip spaceShip;                                                                     //space ship size // shoot delay
-	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, 0.75f        , 0.7f);
+	setupSpaceShip(spaceShip, Vector2f{ window.getSize().x / 2.0f ,window.getSize().y / 2.0f + 10 }, 0.75f        , 0.4f);
 	
 	Score gameScore;
 	SetUpScore(gameScore, 0.1f); // time between each score increase
@@ -116,6 +116,7 @@ int main()
 		AddPerTime(gameScore, deltaTime, 1);
 		CheckEnemyCollision(game, spaceShip, gameoverScreen, gameState);
 		CheckBulletCollision(game);
+		CheckEnemyBulletCollision(game, spaceShip, gameoverScreen, gameState);
 		//UpdateParticleSystem(particleSystem, deltaTime);
 
 		destroyEnemy(game);
