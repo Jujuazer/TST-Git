@@ -17,17 +17,17 @@ void setupSpaceShip(SpaceShip& spaceShip , Vector2f spaceShipPosition, float spa
 	spaceShip.position = spaceShipPosition;
 	spaceShip.size = spaceShipSize;
 	spaceShip.spaceship1.setPointCount(4);
-	spaceShip.spaceship1.setPoint(0, Vector2f(0, -75));
-	spaceShip.spaceship1.setPoint(1, Vector2f(-25, 20));
-	spaceShip.spaceship1.setPoint(2, Vector2f(0, 30));
-	spaceShip.spaceship1.setPoint(3, Vector2f(25, 20));
+	spaceShip.spaceship1.setPoint(0, Vector2f(0 * spaceShipSize, -75 * spaceShipSize));
+	spaceShip.spaceship1.setPoint(1, Vector2f(-25 * spaceShipSize, 20 * spaceShipSize));
+	spaceShip.spaceship1.setPoint(2, Vector2f(0 * spaceShipSize, 30 * spaceShipSize));
+	spaceShip.spaceship1.setPoint(3, Vector2f(25 * spaceShipSize, 20 * spaceShipSize));
 	spaceShip.spaceship1.setPosition(spaceShipPosition);
 
 	spaceShip.spaceship2.setPointCount(4);
-	spaceShip.spaceship2.setPoint(0, Vector2f(0, -15));
-	spaceShip.spaceship2.setPoint(1, Vector2f(-60, 15));
-	spaceShip.spaceship2.setPoint(2, Vector2f(0, 20));
-	spaceShip.spaceship2.setPoint(3, Vector2f(60, 15));
+	spaceShip.spaceship2.setPoint(0, Vector2f(0 * spaceShipSize, -15 * spaceShipSize));
+	spaceShip.spaceship2.setPoint(1, Vector2f(-60 * spaceShipSize, 15 * spaceShipSize));
+	spaceShip.spaceship2.setPoint(2, Vector2f(0 * spaceShipSize, 20 * spaceShipSize));
+	spaceShip.spaceship2.setPoint(3, Vector2f(60 * spaceShipSize, 15 * spaceShipSize));
 	spaceShip.spaceship2.setFillColor(Color(200, 200, 200));
 	spaceShip.spaceship2.setPosition(spaceShipPosition);
 
