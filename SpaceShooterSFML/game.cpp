@@ -70,11 +70,11 @@ void generateEnemy(Score& Gscore, Game& game, RenderWindow& window, Vector2f dir
 	int z = 5;
 	int* pz = &z;
 	
-	if ((*py) < 15) {
-		(*py) = 5 * (Gscore.score / 300);
+	if (y < 15) {
+		y = 5 * (Gscore.score / 300);
 	}
-	if ((*pz) < 50) {
-		(*pz) = 5 * (Gscore.score / 150);
+	if (z < 50) {
+		z = 5 * (Gscore.score / 150);
 	}
 
 	

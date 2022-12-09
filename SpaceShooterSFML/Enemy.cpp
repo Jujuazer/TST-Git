@@ -23,10 +23,19 @@ float randomShootDelay() {
 	return r2;
 }
 
+//random color
+sf::Color randomColor() {
+	int r = rand() % 255;
+	int g = rand() % 255;
+	int b = rand() % 255;
+	return sf::Color(r, g, b);
+}
+
 
 void setupEnemy(Enemy& enemy, RenderWindow& window, Vector2f direction, Game& game) {
 	ConvexShape enemyTest;
 	float a = randomXposition();
+
 	
 	enemyTest.setPointCount(7);
 	
@@ -38,7 +47,10 @@ void setupEnemy(Enemy& enemy, RenderWindow& window, Vector2f direction, Game& ga
 	enemyTest.setPoint(5, Vector2f(-10, 10));
 	enemyTest.setPoint(6, Vector2f(-30, 20));
 	enemyTest.setPosition(Vector2f{ a ,-40.f});
-	enemyTest.setFillColor(Color::Red);
+	//random enemyTest fill color
+	enemyTest.setFillColor(randomColor());
+	
+	
 	enemyTest.setOutlineColor(Color::White);
 	enemyTest.setOutlineThickness(1);
 
